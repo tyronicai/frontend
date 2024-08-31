@@ -1,0 +1,31 @@
+.container {
+	text-align: center;
+	padding: 1em;
+	margin: 1% 15%;
+}
+
+@media only screen and (max-width: 667px) {
+	.container {
+		padding: 0em;
+		margin: 20px 10px;
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	.container {
+		padding: 0em;
+		margin: 20px 10px;
+	}
+}
+
+@media only screen and (max-width: 560px) {
+	.container {
+		padding: 0em;
+		margin: 20px 10px;
+	}
+}
+
+.allBtn {
+	background-color: #4d81bf;
+	color: white;
+}

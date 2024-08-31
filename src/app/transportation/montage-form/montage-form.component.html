@@ -1,0 +1,123 @@
+<!-- <div fxLayout="column" fxLayout.xs="column" fxLayout.md="column" fxLayout.sm="column" fxLayout.lg="row" fxFlex="100"
+	fxFlex.xs="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.lg="100" fxLayoutAlign="space-evenly center">
+	<mat-checkbox class="checkbox" [(ngModel)]="this.currentEstate.waitingPermission" color="primary">
+		<span translate>Halteverbot</span>
+	</mat-checkbox>
+
+	<mat-checkbox class="checkbox" *ngIf="fromEstateFlag" [(ngModel)]="this.currentEstate.kitchenMontage"
+		color="primary">
+		<span translate>Küche demontieren</span>
+	</mat-checkbox>
+
+	<mat-checkbox class="checkbox" *ngIf="fromEstateFlag" [(ngModel)]="this.currentEstate.furnitureMontage"
+		color="primary">
+		<span translate>Möbel demontieren</span>
+	</mat-checkbox>
+
+	<mat-checkbox *ngIf="!fromEstateFlag" [(ngModel)]="this.currentEstate.kitchenMontage" color="primary"
+		class="checkbox">
+		<span translate>Küche montieren</span>
+	</mat-checkbox>
+
+	<mat-checkbox *ngIf="!fromEstateFlag" [(ngModel)]="this.currentEstate.furnitureMontage" color="primary"
+		class="checkbox">
+		<span translate>Möbel montieren</span>
+	</mat-checkbox>
+
+	<mat-checkbox *ngIf="fromEstateFlag" [(ngModel)]="this.currentEstate.packingService" color="primary"
+		class="checkbox">
+		<span translate>Packing service</span>
+	</mat-checkbox>
+</div> -->
+
+<div fxLayout="column" fxLayout.xs="column" fxFlex="100" fxFlex.xs="100" fxLayoutGap="10px" fxLayoutGap.xs="4px">
+	<div
+		fxLayout="row"
+		fxLayout.xs="column"
+		fxLayout.sm="column"
+		fxLayout.md="column"
+		fxLayoutGap="20px"
+		fxLayoutGap.xs="4px"
+	>
+		<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+			<mat-checkbox [(ngModel)]="this.currentEstate.waitingPermission" color="primary">
+				<span translate>Halteverbot</span>
+			</mat-checkbox>
+		</div>
+	</div>
+	<div
+		*ngIf="fromEstateFlag"
+		fxLayout="row"
+		fxLayout.xs="column"
+		fxLayout.sm="column"
+		fxLayout.md="column"
+		fxLayoutGap="20px"
+		fxLayoutGap.xs="4px"
+	>
+		<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+			<mat-checkbox [(ngModel)]="this.currentEstate.kitchenMontage" color="primary">
+				<span translate>Küche demontieren</span>
+			</mat-checkbox>
+		</div>
+	</div>
+	<div
+		*ngIf="fromEstateFlag"
+		fxLayout="row"
+		fxLayout.xs="column"
+		fxLayout.sm="column"
+		fxLayout.md="column"
+		fxLayoutGap="20px"
+		fxLayoutGap.xs="4px"
+	>
+		<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+			<mat-checkbox [(ngModel)]="this.currentEstate.furnitureMontage" color="primary">
+				<span translate>Möbel demontieren</span>
+			</mat-checkbox>
+		</div>
+	</div>
+	<div
+		*ngIf="!fromEstateFlag"
+		fxLayout="row"
+		fxLayout.xs="column"
+		fxLayout.sm="column"
+		fxLayout.md="column"
+		fxLayoutGap="20px"
+		fxLayoutGap.xs="4px"
+	>
+		<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+			<mat-checkbox [(ngModel)]="this.currentEstate.kitchenMontage" color="primary">
+				<span translate>Küche montieren</span>
+			</mat-checkbox>
+		</div>
+	</div>
+	<div
+		*ngIf="!fromEstateFlag"
+		fxLayout="row"
+		fxLayout.xs="column"
+		fxLayout.sm="column"
+		fxLayout.md="column"
+		fxLayoutGap="20px"
+		fxLayoutGap.xs="4px"
+	>
+		<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+			<mat-checkbox [(ngModel)]="this.currentEstate.furnitureMontage" color="primary">
+				<span translate>Möbel montieren</span>
+			</mat-checkbox>
+		</div>
+	</div>
+	<div
+		*ngIf="fromEstateFlag"
+		fxLayout="row"
+		fxLayout.xs="column"
+		fxLayout.sm="column"
+		fxLayout.md="column"
+		fxLayoutGap="20px"
+		fxLayoutGap.xs="4px"
+	>
+		<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+			<mat-checkbox [(ngModel)]="this.currentEstate.packingService" color="primary">
+				<span translate>Packing service</span>
+			</mat-checkbox>
+		</div>
+	</div>
+</div>

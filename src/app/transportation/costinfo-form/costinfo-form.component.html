@@ -1,0 +1,77 @@
+<div style="position: sticky; top: 10px">
+	<mat-card fxLayout="row" fxLayoutGap="10px">
+		<div fxLayout="column">
+			<mat-card-title style="text-align: center">
+				{{ 'From:' | translate }} {{ this.estateService.getEstateTypeNameById(this.fromEstate.EstateTypeId) }}
+				<br />
+				{{ 'To:' | translate }} {{ this.estateService.getEstateTypeNameById(this.toEstate.EstateTypeId) }}
+			</mat-card-title>
+
+			<div fxLayout="row">
+				<p style="font-size: 1.2rem">
+					<span>
+						{{ 'Distance' | translate }}: {{ this.currentTransportation.TransportationDistanceMax - 14 }} -
+						{{ this.currentTransportation.TransportationDistanceMax }} km
+					</span>
+					<br />
+					<span>{{ 'Ladung' | translate }}: {{ this.transportationService.TotalVolume() }} m³</span>
+					<br />
+					<span
+						>{{ '# of Vehicle' | translate }}:
+						{{ this.transportationService.transCalRes?.vehicles.length }}</span
+					>
+					<br />
+					<span
+						>{{ 'Load Worker' | translate }}:
+						{{ this.transportationService.transCalRes?.numOfLoadWorker }}</span
+					>
+					<br />
+					<span
+						>{{ 'Unload Worker' | translate }}:
+						{{ this.transportationService.transCalRes?.numOfUnloadWorker }}</span
+					>
+					<br />
+					<span>{{ 'LoadDuration' | translate }}: {{ this.getLoadDuration() }}</span>
+					<br />
+					<span>{{ 'UnloadDuration' | translate }}: {{ this.getUnloadDuration() }}</span>
+					<br />
+					<span>{{ 'LaborCost' | translate }}: {{ this.getLaborCost() }} € </span>
+					<br />
+					<span>{{ 'FareCost' | translate }}: {{ this.getFareCost() }} €</span>
+					<br />
+					<span>{{ 'TotalCost' | translate }}: {{ this.getTotalCost() }} €</span>
+				</p>
+				<br />
+			</div>
+
+			<button
+				fxLayoutGap="10px"
+				style="float: right"
+				mat-raised-button
+				color="primary"
+				(click)="this.closeDialog()"
+			>
+				{{ 'done' | translate }}
+			</button>
+		</div>
+		<!--
+            vehicles: Vehicle[];
+            volume: number;
+            loadDay: number;
+            loadHour: number;
+            loadMinute: number;
+            loadDuration: string;
+            unloadDay: number;
+            unloadHour: number;
+            unloadMinute: number;
+            unloadDuration: string;
+            numOfLoadWorker: number;
+            numOfUnloadWorker: number;
+            distanceInKM: number;
+            laborLoadCost: number;
+            laborUnloadCost: number;
+            fareCost: number;
+            accomodationCost: number;
+        -->
+	</mat-card>
+</div>

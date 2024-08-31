@@ -1,0 +1,47 @@
+<div fxFill>
+	<mat-sidenav-container fxFill>
+		<mat-sidenav #sidenav mode="over" ngClass.gt-sm="has-border">
+			<nav>
+				<mat-list>
+					<mat-divider></mat-divider>
+					<a mat-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()">
+						<span translate>Home</span>
+					</a>
+					<mat-divider></mat-divider>
+					<a
+						*ngIf="this.userService.isUserLoggedIn()"
+						mat-list-item
+						routerLink="/profile/demands"
+						routerLinkActive="active"
+						(click)="sidenav.close()"
+					>
+						<span translate>Demands</span>
+					</a>
+					<mat-divider></mat-divider>
+
+					<mat-expansion-panel *ngIf="this.userService.isUserLoggedIn()">
+						<mat-expansion-panel-header> Account </mat-expansion-panel-header>
+						<mat-divider></mat-divider>
+
+						<a mat-list-item routerLink="/profile" routerLinkActive="active" (click)="sidenav.close()">
+							<span translate>Profile</span>
+						</a>
+
+						<a mat-list-item routerLink="/profile" routerLinkActive="active" (click)="sidenav.close()">
+							<span translate>Settings</span>
+						</a>
+					</mat-expansion-panel>
+
+					<mat-divider></mat-divider>
+				</mat-list>
+			</nav>
+		</mat-sidenav>
+		<mat-sidenav-content>
+			<app-header [sidenav]="sidenav"></app-header>
+			<router-outlet></router-outlet>
+			<!--
+			<app-footer [year]="2020" ></app-footer>
+			-->
+		</mat-sidenav-content>
+	</mat-sidenav-container>
+</div>

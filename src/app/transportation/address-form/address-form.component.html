@@ -1,0 +1,99 @@
+<mat-card class="card-container" fxLayout="column" style="border-radius: 10px">
+	<!-- <mat-card-header class="card-container-center-right">
+		<mat-card-title fromAddress>{{ header | translate }}</mat-card-title>
+	</mat-card-header> -->
+	<h3 fromAddress style="color: #4d81bf">{{ header | translate }}</h3>
+	<mat-card-content>
+		<div class="example-form-fields">
+			<form class="example-form">
+				<p>
+					<mat-form-field style="display: block">
+						<mat-label translate>Straße</mat-label>
+						<input [(ngModel)]="this.address.Street" matInput required [formControl]="streetFormControl" />
+						<mat-error *ngIf="streetFormControl.hasError('required')">
+							{{ 'Straße' | translate }} <strong>{{ 'required' | translate }}</strong>
+						</mat-error>
+					</mat-form-field>
+				</p>
+				<p>
+					<mat-form-field style="display: block">
+						<mat-label translate>House number</mat-label>
+						<input
+							[(ngModel)]="this.address.HouseNumber"
+							matInput
+							required
+							[formControl]="houseNumberFormControl"
+						/>
+						<mat-error *ngIf="houseNumberFormControl.hasError('required')">
+							{{ 'House number' | translate }} <strong>{{ 'required' | translate }}</strong>
+						</mat-error>
+					</mat-form-field>
+				</p>
+				<p>
+					<mat-form-field style="display: block">
+						<mat-label translate>PLZ</mat-label>
+						<input
+							type="text"
+							aria-label="Number"
+							matInput
+							required
+							[formControl]="postCodeCtl"
+							[matAutocomplete]="autoPostCode"
+							(keyup)="this.getAddressPostList()"
+							(ngModel)="(this.address.PostCode)"
+						/>
+						<mat-autocomplete autoActiveFirstOption #autoPostCode="matAutocomplete">
+							<mat-option
+								(onSelectionChange)="postCodeOptionSelected(plz)"
+								*ngFor="let plz of this.postCodes"
+								[value]="plz.postCode"
+							>
+								{{ plz.postCode }}-{{ plz.placeName }}
+							</mat-option>
+						</mat-autocomplete>
+						<mat-error *ngIf="postCodeCtl.hasError('required')">
+							{{ 'PLZ' | translate }} <strong>{{ 'required' | translate }}</strong>
+						</mat-error>
+					</mat-form-field>
+				</p>
+				<p>
+					<mat-form-field style="display: block">
+						<mat-label translate>ORT</mat-label>
+						<input
+							type="text"
+							aria-label="String"
+							matInput
+							required
+							[formControl]="placeNameCtl"
+							[matAutocomplete]="autoPlaceName"
+							(keyup)="this.getAddressPlaceList()"
+							(ngModel)="(this.address.PlaceName)"
+						/>
+						<mat-autocomplete autoActiveFirstOption #autoPlaceName="matAutocomplete">
+							<mat-option
+								(onSelectionChange)="placeNameOptionSelected(plz)"
+								*ngFor="let plz of this.placeNames"
+								[value]="plz.placeName"
+							>
+								{{ plz.postCode }}-{{ plz.placeName }}
+							</mat-option>
+						</mat-autocomplete>
+						<mat-error *ngIf="placeNameCtl.hasError('required')">
+							{{ 'ORT' | translate }} <strong>{{ 'required' | translate }}</strong>
+						</mat-error>
+					</mat-form-field>
+				</p>
+				<p>
+					<mat-form-field style="display: block">
+						<mat-label translate>COUNTRY</mat-label>
+						<mat-select [(ngModel)]="this.address.CountryId" name="country" panelWidth="400px">
+							<mat-option *ngFor="let country of this.countryService.getCountryList" [value]="country.id">
+								{{ this.estateService.getNameByLanguage(country) }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</p>
+			</form>
+		</div>
+	</mat-card-content>
+</mat-card>

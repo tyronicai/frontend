@@ -1,0 +1,346 @@
+<mat-card fxLayout="column" fxFlex="100" fxFlex.xs="100" fxLayoutGap="10px">
+	<!-- <mat-card-header>
+		<mat-card-title fromAddress translate>{{ header }}</mat-card-title>
+	</mat-card-header> -->
+	<h3 fromAddress style="color: #4d81bf">{{ header | translate }}</h3>
+	<div fxLayout="column" fxLayout.xs="column">
+		<mat-form-field style="width: 100%">
+			<mat-label translate>Ich wohne in einer</mat-label>
+			<mat-select [(value)]="this.currentEstate.EstateTypeId" name="estate" style="padding: 0px 10px">
+				<mat-option *ngFor="let estate of this.estateService.getEstateTypeList" [value]="estate.id">
+					{{ this.estateService.getNameByLanguage(estate) }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+
+	<div *ngIf="this.currentEstate.EstateTypeId == 1">
+		<div
+			fxLayout="column"
+			fxLayout.xs="column"
+			fxFlex="100"
+			fxFlex.xs="100"
+			fxLayoutGap="10px"
+			fxLayoutGap.xs="4px"
+		>
+			<div
+				fxLayout="row"
+				fxLayout.xs="column"
+				fxLayout.sm="column"
+				fxLayout.md="column"
+				fxLayoutGap="20px"
+				fxLayoutGap.xs="4px"
+			>
+				<div fxFlex="100" fxFlex.xs="100">
+					<app-incremental-field
+						fxFlex="100"
+						[myHeader]="'Etage' | translate"
+						[(counter)]="this.currentEstate.floorOfEstate"
+					>
+					</app-incremental-field>
+				</div>
+			</div>
+			<div
+				fxLayout="row"
+				fxLayout.xs="column"
+				fxLayout.sm="column"
+				fxLayout.md="column"
+				fxLayoutGap="20px"
+				fxLayoutGap.xs="4px"
+			>
+				<div fxFlex="100" fxFlex.xs="100">
+					<app-incremental-field
+						fxFlex="100"
+						fxFlex.md="100"
+						[myHeader]="'Personen' | translate"
+						[(counter)]="this.currentTransportation.NumberOfPeople"
+					>
+					</app-incremental-field>
+				</div>
+			</div>
+
+			<div
+				fxLayout.lg="row"
+				fxLayout.md="row"
+				fxLayout.sm="column"
+				fxLayout.xs="column"
+				fxLayoutGap="20px"
+				fxLayoutGap.xs="4px"
+			>
+				<div fxFlex="100" fxLayout="row" fxLayoutGap="4px" fxLayoutGap.xs="4px">
+					<mat-form-field style="width: 100%; height: 50px">
+						<mat-select [(ngModel)]="this.currentEstate.numberOfFloors" style="padding: 0px 10px">
+							<mat-option style="margin: 10px 5px; height: 50px" color="primary" [value]="1">
+								<span translate>Single</span>
+							</mat-option>
+							<mat-option style="margin: 10px 5px; height: 50px" color="primary" [value]="2">
+								<span translate>Dublex</span>
+							</mat-option>
+							<mat-option style="margin: 10px 5px; height: 50px" color="primary" [value]="3">
+								<span translate>Triplex</span>
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+			</div>
+			<div
+				fxLayout.lg="row"
+				fxLayout.md="row"
+				fxLayout.sm="column"
+				fxLayout.xs="column"
+				fxLayoutGap="20px"
+				fxLayoutGap.xs="4px"
+			>
+				<div fxFlex="100" fxLayout="row" fxLayoutGap="20px" fxLayoutGap.xs="4px">
+					<mat-form-field style="width: 100%; height: 50px">
+						<mat-select [(ngModel)]="this.currentEstate.elevatorAvailability" style="padding: 0px 10px">
+							<mat-option style="margin: 10px 5px" color="primary" [value]="0">
+								<span translate>No lift</span>
+							</mat-option>
+							<mat-option style="margin: 10px 5px" color="primary" [value]="1">
+								<span translate>Personal lift</span>
+							</mat-option>
+							<mat-option style="margin: 10px 5px" color="primary" [value]="2">
+								<span translate>Cargo lift</span>
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+			</div>
+
+			<div
+				fxLayout="row"
+				fxLayout.xs="column"
+				fxLayout.sm="column"
+				fxLayout.md="column"
+				fxLayoutGap="20px"
+				fxLayoutGap.xs="4px"
+			>
+				<app-incremental-field
+					fxFlex="100"
+					fxFlex.md="100"
+					fxFlex.md="100"
+					fxFlex.sm="100"
+					fxFlex.xs="100"
+					[myHeader]="'Zimmer' | translate"
+					[(counter)]="this.currentEstate.numberOfRooms"
+				></app-incremental-field>
+			</div>
+			<div
+				fxLayout="row"
+				fxLayout.xs="column"
+				fxLayout.sm="column"
+				fxLayout.md="column"
+				fxLayoutGap="20px"
+				fxLayoutGap.xs="4px"
+			>
+				<app-incremental-field
+					fxFlex="100"
+					fxFlex.md="100"
+					fxFlex.md="100"
+					fxFlex.sm="100"
+					fxFlex.xs="100"
+					[myHeader]="'Wohnfläche' | translate"
+					[min]="15"
+					[step]="15"
+					[range]="true"
+					[(counter)]="this.currentEstate.totalSquareMeter"
+				></app-incremental-field>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="this.currentEstate.EstateTypeId == 2">
+		<div
+			fxLayout="column"
+			fxLayout.xs="column"
+			fxFlex="100"
+			fxFlex.xs="100"
+			fxLayoutGap="10px"
+			fxLayoutGap.xs="4px"
+		>
+			<div
+				fxLayout="row"
+				fxLayout.xs="column"
+				fxLayout.sm="column"
+				fxLayout.md="column"
+				fxLayout.xs="column"
+				fxLayoutGap="4px"
+				fxLayoutGap.xs="4px"
+			>
+				<div fxFlex fxFlex.xs="100">
+					<app-incremental-field
+						fxFlex="100"
+						[myHeader]="'Stockwerk' | translate"
+						[(counter)]="this.currentEstate.numberOfFloors"
+					>
+					</app-incremental-field>
+				</div>
+
+				<div *ngIf="fromEstateFlag" fxFlex="50" fxFlex.xs="100">
+					<app-incremental-field
+						fxFlex="100"
+						[myHeader]="'Personen' | translate"
+						[(counter)]="this.currentTransportation.NumberOfPeople"
+						*ngIf="fromEstateFlag"
+					>
+					</app-incremental-field>
+				</div>
+			</div>
+
+			<app-elevator-form [currentEstate]="this.currentEstate"></app-elevator-form>
+
+			<div
+				fxLayout="row"
+				fxLayout.xs="column"
+				fxLayout.sm="column"
+				fxLayout.md="column"
+				fxLayout.xs="column"
+				fxLayoutGap="20px"
+				fxLayoutGap.xs="4px"
+			>
+				<app-incremental-field
+					fxFlex="50"
+					fxFlex.xs="100"
+					[myHeader]="'Zimmer' | translate"
+					[(counter)]="this.currentEstate.numberOfRooms"
+				>
+				</app-incremental-field>
+
+				<app-incremental-field
+					fxFlex="50"
+					fxFlex.xs="100"
+					[myHeader]="'Wohnfläche' | translate"
+					[min]="15"
+					[step]="15"
+					[range]="true"
+					[(counter)]="this.currentEstate.totalSquareMeter"
+				>
+				</app-incremental-field>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="this.currentEstate.EstateTypeId == 3">
+		<div
+			fxLayout="column"
+			fxLayout.xs="column"
+			fxFlex="100"
+			fxFlex.xs="100"
+			fxLayoutGap="10px"
+			fxLayoutGap.xs="4px"
+		>
+			<div
+				fxLayout="row"
+				fxLayout.xs="column"
+				fxLayout.sm="column"
+				fxLayout.md="column"
+				fxLayout.xs="column"
+				fxLayoutGap="4px"
+				fxLayoutGap.xs="4px"
+			>
+				<div fxFlex fxFlex.xs="100">
+					<app-incremental-field
+						fxFlex="100"
+						[myHeader]="'Etage' | translate"
+						[(counter)]="this.currentEstate.floorOfEstate"
+					>
+					</app-incremental-field>
+				</div>
+
+				<div fxFlex="50" fxFlex.xs="100">
+					<app-incremental-field
+						fxFlex="100"
+						[myHeader]="'StockWerk' | translate"
+						[(counter)]="this.currentEstate.numberOfFloors"
+					>
+					</app-incremental-field>
+				</div>
+			</div>
+
+			<app-elevator-form [currentEstate]="this.currentEstate"></app-elevator-form>
+
+			<div
+				fxLayout="row"
+				fxLayout.xs="column"
+				fxLayout.sm="column"
+				fxLayout.md="column"
+				fxLayout.xs="column"
+				fxLayoutGap="4px"
+				fxLayoutGap.xs="4px"
+			>
+				<app-incremental-field
+					fxFlex="50"
+					fxFlex.xs="100"
+					[myHeader]="'Zimmer' | translate"
+					[(counter)]="this.currentEstate.numberOfRooms"
+				>
+				</app-incremental-field>
+
+				<app-incremental-field
+					fxFlex="50"
+					fxFlex.xs="100"
+					[myHeader]="'Wohnfläche' | translate"
+					[min]="15"
+					[step]="15"
+					[range]="true"
+					[(counter)]="this.currentEstate.totalSquareMeter"
+				>
+				</app-incremental-field>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="this.currentEstate.EstateTypeId == 4">
+		<div
+			fxLayout="column"
+			fxLayout.xs="column"
+			fxFlex="100"
+			fxFlex.xs="100"
+			fxLayoutGap="10px"
+			fxLayoutGap.xs="4px"
+		>
+			<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="4px" fxLayoutGap.xs="4px">
+				<div fxFlex fxFlex.xs="100">
+					<app-incremental-field
+						fxFlex="100"
+						[myHeader]="'StockWerk' | translate"
+						[(counter)]="this.currentEstate.numberOfFloors"
+					>
+					</app-incremental-field>
+				</div>
+			</div>
+
+			<app-elevator-form [currentEstate]="this.currentEstate"></app-elevator-form>
+
+			<div
+				fxLayout="row"
+				fxLayout.xs="column"
+				fxLayout.sm="column"
+				fxLayout.md="column"
+				fxLayout.xs="column"
+				fxLayoutGap="20px"
+				fxLayoutGap.xs="4px"
+			>
+				<app-incremental-field
+					fxFlex="50"
+					fxFlex.xs="100"
+					[myHeader]="'Zimmer' | translate"
+					[(counter)]="this.currentEstate.numberOfRooms"
+				>
+				</app-incremental-field>
+
+				<app-incremental-field
+					fxFlex="50"
+					fxFlex.xs="100"
+					[myHeader]="'Wohnfläche' | translate"
+					[min]="15"
+					[step]="15"
+					[range]="true"
+					[(counter)]="this.currentEstate.totalSquareMeter"
+				>
+				</app-incremental-field>
+			</div>
+		</div>
+	</div>
+</mat-card>

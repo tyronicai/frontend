@@ -1,0 +1,28 @@
+.login {
+	background-color: lightcoral;
+	height: 250px;
+	cursor: pointer;
+	.login-content {
+		color: white;
+		text-align: center;
+		padding: 70px 0;
+		.header {
+			font-size: 1.4rem;
+		}
+	}
+}
+
+.register {
+	background-color: lightskyblue;
+	height: 250px;
+	cursor: pointer;
+	.register-content {
+		color: white;
+		text-align: center;
+		padding: 70px 0;
+
+		.header {
+			font-size: 1.4rem;
+		}
+	}
+}

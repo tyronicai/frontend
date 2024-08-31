@@ -1,0 +1,21 @@
+{
+	"name": "frontend ng8",
+	"short_name": "frontend ng8",
+	"theme_color": "#488aff",
+	"background_color": "#488aff",
+	"scope": "/",
+	"start_url": "/",
+	"display": "standalone",
+	"icons": [
+		{
+			"src": "assets/meinumzug512.png",
+			"sizes": "516x512",
+			"type": "image/png"
+		},
+		{
+			"src": "assets/meinumzug-logo@192.png",
+			"sizes": "194x192",
+			"type": "image/png"
+		}
+	]
+}

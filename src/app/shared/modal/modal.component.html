@@ -1,0 +1,13 @@
+<div id="modal-content-wrapper">
+	<header class="modal-title">
+		<h1 [innerHTML]="title"></h1>
+	</header>
+	<section id="modal-body">
+		<p [innerHTML]="this.message"></p>
+	</section>
+	<footer id="modal-footer">
+		<button mat-raised-button id="modal-cancel-button" (click)="onDismiss()" [innerHTML]="this.dismiss"></button>
+		<button mat-raised-button id="modal-action-button" (click)="onConfirm()" [innerHTML]="this.confirm"></button>
+	</footer>
+</div>
+<!-- https://teamtreehouse.com/community/why-is-it-common-practice-to-wrap-everything-within-the-body-tag-with-a-div-tag -->

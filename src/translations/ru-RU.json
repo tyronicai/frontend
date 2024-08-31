@@ -1,0 +1,72 @@
+{
+	"APP_NAME": "MyMove",
+	"About": "Около",
+	"Hello world !": "Привет, мир !",
+	"Home": "Главная",
+	"Logged in as": "Вы вошли как",
+	"Login": "Авторизоваться",
+	"Logout": "Выйти",
+	"Password": "пароль",
+	"Password is required": "необходим пароль",
+	"Username": "имя пользователя",
+	"Username is required": "Имя пользователя требуется",
+	"Username or password incorrect.": "Имя пользователя или пароль неверен",
+	"Remember me": "Запомни меня",
+	"Version": "Версия",
+	"Transportation": "Транспорт",
+	"Home From Home": "Дом вдали от дома",
+	"Intercity Transportation": "Междугородние перевозки",
+	"Which service are you looking for?": "Какой сервис вы ищете?",
+	"Goods Transport": "Перевозка грузов",
+	"International Transport": "Международный транспорт",
+	"SEARCH": "ПОИСК",
+	"TRANSPORT AND STORAGE SERVICES": "ТРАНСПОРТНЫЕ И ХРАНИТЕЛЬНЫЕ УСЛУГИ",
+	"PREVIOUS": "ПРЕДЫДУЩИЙ",
+	"NEXT": "СЛЕДУЮЩИЙ",
+	"Average price range:": "Средний ценовой диапазон:",
+	"Packing service": "Packing service",
+	"Request quote from service providers": "Request quote from service providers",
+	"Continue to get exact priced offer": "Continue to get exact priced offer",
+	"How it works": "How it works",
+	"Registration": "Registration",
+	"Receive quote from service providers": "Receive quote from service providers",
+	"Set price with Artificial Intelligence": "Set price with Artificial Intelligence",
+
+	"demo": {
+		"title": "HowItWorks",
+		"register": "This is a simple demonstration app for ngx-translate"
+	},
+	"First": {
+		"HIW": {
+			"Title": "Nasıl Çalışır ?",
+			"It1": "Taşınma detaylarınızı girin",
+			"It2": "Rezervasyonunuzu yapınız",
+			"It3": "İş otaklarımızdan gelen teklifleri alın",
+			"It4": "Beğendiğiniz teklifi seçin"
+		},
+		"Alert":"Alert",
+		"SupportedAreas":"For the time being, we sussport post codes starting with 40, 41, 42, 43, 44, 45, 46, 58",
+		"MapButton": "Map of supported areas",
+		"Dialog" : {
+			"title": "title",
+			"message": "message",
+			"confirm":"confirm",
+			"dismiss": "dismiss"
+		}
+	},
+	"cookie": {
+        "header": "Печенье используется на сайте!",
+        "message": "Этот веб-сайт использует куки-файлы, чтобы обеспечить вам максимальный комфорт на нашем веб-сайте.",
+        "dismiss": "Понял!",
+        "allow": "Разрешить печенье",
+        "deny": "Отклонить",
+        "link": "Выучить больше",
+		"policy": "Политика использования файлов cookie",
+		"andour":"and our"
+    },
+	"login": {
+		"resetPwd": "Восстановление пароля",
+		"newPwd": 	"Введите новый пароль",
+		"reNewPwd": "Введите новый пароль еще раз"
+	}
+}

@@ -1,0 +1,255 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+	<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="20">
+			<mat-card fxLayoutAlign="center center">
+				<mat-card-content flex="100">
+					<mat-card-header>
+						<mat-card-title>{{ account?.firstName }} {{ account?.lastName }}</mat-card-title>
+						<mat-card-subtitle>{{ account?.username }} </mat-card-subtitle>
+					</mat-card-header>
+				</mat-card-content>
+			</mat-card>
+		</div>
+		<div fxFlex="100" fxFlex.gt-sm="80">
+			<mat-card fxHide.lt-md fxLayoutAlign="center center">
+				<mat-card-content>
+					<mat-card-header *ngIf="account?.isEmailActivated">
+						<mat-card-title>Email onaylandı.</mat-card-title>
+						<mat-card-subtitle>Profilinizi tamamlayın.</mat-card-subtitle>
+					</mat-card-header>
+					<mat-card-header *ngIf="!account?.isEmailActivated">
+						<mat-card-title>Email adresiniz henüz onaylanmadı.</mat-card-title>
+						<mat-card-subtitle
+							>Email adresinizi kontrol edin. Eğer mail size ulaşmamışsa tekrar göndermek için
+							<b clikable style="cursor: pointer" (click)="resendEmailActivationMail()">tıklayın</b
+							>.</mat-card-subtitle
+						>
+					</mat-card-header>
+				</mat-card-content>
+			</mat-card>
+		</div>
+	</div>
+
+	<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="20">
+			<mat-card fxLayoutAlign="center">
+				<mat-card-content flex="100">
+					<mat-list>
+						<mat-list-item>
+							<button style="width: 100%" mat-raised-button color="primary" (click)="selectedTab(1)">
+								{{ 'Account Settings' | translate }}
+							</button>
+						</mat-list-item>
+						<mat-list-item>
+							<button style="width: 100%" mat-raised-button color="primary" (click)="selectedTab(2)">
+								{{ 'Change Password' | translate }}
+							</button>
+						</mat-list-item>
+					</mat-list>
+				</mat-card-content>
+			</mat-card>
+		</div>
+		<div *ngIf="selectedPage == 1" fxFlex="100" fxFlex.gt-sm="80">
+			<mat-card>
+				<mat-card-content>
+					<mat-card-header>
+						<mat-card-title>{{ 'Account Settings' | translate }}</mat-card-title>
+					</mat-card-header>
+					<div class="login-fields" fxLayout="column">
+						<div fxLayout="row" fxLayout.xs="column" fxFlex="100">
+							<div fxHide.lt-md fxFlex="50">
+								<h3 style="line-height: 30px" translate>Firstname</h3>
+							</div>
+							<div
+								fxFlex="50"
+								fxLayoutAlign="start"
+								fxLayoutAlign.sm="center"
+								fxLayoutAlign.xs="center"
+								fxLayoutAlign.md="center"
+							>
+								<mat-form-field appearance="outline">
+									<input
+										type="text"
+										matInput
+										[(ngModel)]="account.firstName"
+										[value]="account?.firstName"
+										[placeholder]="'Firstname' | translate"
+										[disabled]="editable"
+									/>
+								</mat-form-field>
+							</div>
+						</div>
+
+						<div fxLayout="row" fxLayout.xs="column" fxFlex="100">
+							<div fxHide.lt-md fxFlex="50">
+								<h3 style="line-height: 30px" translate>Lastname</h3>
+							</div>
+							<div fxFlex="50" fxLayoutAlign="start">
+								<mat-form-field appearance="outline">
+									<input
+										type="text"
+										matInput
+										[(ngModel)]="account.lastName"
+										[value]="account?.lastName"
+										[placeholder]="'Lastname' | translate"
+										[disabled]="editable"
+									/>
+								</mat-form-field>
+							</div>
+						</div>
+
+						<div fxLayout="row" fxLayout.xs="column" fxFlex="100">
+							<div fxHide.lt-md fxFlex="50">
+								<h3 style="line-height: 30px" translate>Email</h3>
+							</div>
+							<div fxFlex="50" fxLayoutAlign="start">
+								<mat-form-field appearance="outline">
+									<input
+										type="text"
+										matInput
+										[(ngModel)]="account.email"
+										[value]="account?.email"
+										[placeholder]="'Email' | translate"
+										[disabled]="editable"
+									/>
+								</mat-form-field>
+							</div>
+						</div>
+
+						<div fxLayout="row" fxLayout.xs="column" fxFlex="100">
+							<div fxHide.lt-md fxFlex="50">
+								<h3 style="line-height: 30px" translate>Phone Number</h3>
+							</div>
+							<div fxFlex="50" fxLayoutAlign="start">
+								<mat-form-field appearance="outline">
+									<input
+										type="text"
+										matInput
+										[(ngModel)]="account.phoneNumber"
+										[value]="account?.phoneNumber"
+										[placeholder]="'Phone' | translate"
+										[disabled]="editable"
+									/>
+								</mat-form-field>
+							</div>
+						</div>
+
+						<button *ngIf="editable" mat-raised-button color="primary" (click)="editAccount()">
+							<span translate>Edit</span>
+						</button>
+
+						<div
+							fxLayout="row"
+							fxLayout.xs="column"
+							fxFlex="100"
+							fxLayoutAlign="center center"
+							fxLayoutGap="10px"
+						>
+							<button *ngIf="!editable" mat-raised-button color="warn" (click)="updateAccount()">
+								<span translate>Update</span>
+							</button>
+
+							<button *ngIf="!editable" mat-raised-button color="info" (click)="cancel()">
+								<span translate>Cancel</span>
+							</button>
+						</div>
+					</div>
+				</mat-card-content>
+			</mat-card>
+		</div>
+		<div *ngIf="selectedPage == 2" fxFlex="100" fxFlex.gt-sm="80">
+			<mat-card>
+				<mat-card-content>
+					<mat-card-header>
+						<mat-card-title>
+							{{ 'Change Password' | translate }}
+						</mat-card-title>
+					</mat-card-header>
+					<form [formGroup]="onPasswordForm">
+						<div class="login-fields" fxLayout="column">
+							<div fxLayout="row" fxLayout.xs="column" fxFlex="100">
+								<div fxHide.lt-md fxFlex="50">
+									<h3 style="line-height: 30px" translate>Password</h3>
+								</div>
+								<div
+									fxFlex="50"
+									fxLayoutAlign="start"
+									fxLayoutAlign.sm="center"
+									fxLayoutAlign.xs="center"
+									fxLayoutAlign.md="center"
+								>
+									<mat-form-field appearance="outline">
+										<input
+											type="password"
+											matInput
+											[placeholder]="'Password' | translate"
+											formControlName="password"
+											[(ngModel)]="account.password"
+										/>
+									</mat-form-field>
+								</div>
+							</div>
+
+							<div fxLayout="row" fxLayout.xs="column" fxFlex="100">
+								<div fxHide.lt-md fxFlex="50">
+									<h3 style="line-height: 30px" translate>New Password</h3>
+								</div>
+								<div
+									fxFlex="50"
+									fxLayoutAlign="start"
+									fxLayoutAlign.sm="center"
+									fxLayoutAlign.xs="center"
+									fxLayoutAlign.md="center"
+								>
+									<mat-form-field appearance="outline">
+										<input
+											type="password"
+											matInput
+											[placeholder]="'New Password' | translate"
+											formControlName="newPassword"
+										/>
+									</mat-form-field>
+								</div>
+							</div>
+
+							<div fxLayout="row" fxLayout.xs="column" fxFlex="100">
+								<div fxHide.lt-md fxFlex="50">
+									<h3 style="line-height: 30px" translate>New Password Confirm</h3>
+								</div>
+								<div
+									fxFlex="50"
+									fxLayoutAlign="start"
+									fxLayoutAlign.sm="center"
+									fxLayoutAlign.xs="center"
+									fxLayoutAlign.md="center"
+								>
+									<mat-form-field appearance="outline">
+										<input
+											type="password"
+											matInput
+											[placeholder]="'New Password Confirm' | translate"
+											formControlName="newPasswordConfirm"
+										/>
+									</mat-form-field>
+								</div>
+							</div>
+
+							<p *ngIf="onPasswordForm.hasError('mismatchedPasswords')" translate>
+								Passwords do not match!
+							</p>
+
+							<button
+								[disabled]="!onPasswordForm.valid"
+								mat-raised-button
+								color="primary"
+								(click)="changePassword()"
+							>
+								<span translate>Change Password</span>
+							</button>
+						</div>
+					</form>
+				</mat-card-content>
+			</mat-card>
+		</div>
+	</div>
+</div>

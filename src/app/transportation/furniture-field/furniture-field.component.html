@@ -1,0 +1,16 @@
+<div fxLayout="column" fxFlex="grow">
+	<div fxFlex="50" fxLayoutAlign="center center">
+		<h4>
+			SELECTED FURNITURES
+			<mat-divider style="margin-top: 10px"></mat-divider>
+		</h4>
+	</div>
+
+	<div fxFlex fxLayoutAlign="center center" fxLayout="column">
+		<mat-list *ngFor="let f of furnitures">
+			<mat-list-item>
+				{{ this.estateService.getNameByLanguage(f.FurnitureType) }}
+			</mat-list-item>
+		</mat-list>
+	</div>
+</div>

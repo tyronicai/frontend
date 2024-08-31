@@ -1,0 +1,1083 @@
+<div
+	class="container"
+	fxLayout="column"
+	fxLayout.sm="column"
+	fxLayout.lg="column"
+	fxLayout.xs="column"
+	fxLayout.md="column"
+	fxLayoutAlign="center"
+	fxLayoutGap="10px"
+>
+	<div fxLayout.gt-sm="row" class="container" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div *ngFor="let link of links; let i = index" fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="center">
+				<button
+					fxFlex="100%"
+					style="float: right"
+					mat-raised-button
+					[color]="link.color"
+					(click)="selectedIndex = i"
+					(click)="selectDemandType(selectedIndex)"
+					[color]="selectedIndex === i ? 'primary' : 'secondary'"
+				>
+					{{ link.name }}
+				</button>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="pageIndex === 0" fxFlex fxLayout="column" fxLayout.lg="column" fxLayout.xs="column">
+		<div
+			*ngFor="let trans of transportations; index as i"
+			fxFlex
+			fxLayout="column"
+			fxLayout.lg="column"
+			fxLayout.xs="column"
+		>
+			<mat-accordion>
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+						<div class="accordion-header">
+							<div class="accordion-header-title">
+								<span class="accordion-title-item"
+									><strong>{{ i + 1 + ')' }}</strong></span
+								>&nbsp;
+								<span class="accordion-title-item"
+									><strong>From: </strong>{{ trans?.fromAddress?.placeName }}</span
+								>&nbsp;
+								<span class="accordion-title-item"
+									><strong>To:</strong> {{ trans?.toAddress?.placeName }}</span
+								>
+							</div>
+						</div>
+					</mat-expansion-panel-header>
+					<div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+						<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+							<div fxFlex="100" fxFlex.gt-sm="100">
+								<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+									<mat-card fxFlex="100" class="mat-card-cls" fxLayout="column" fxLayout.xs="column">
+										<mat-card-header>
+											<mat-card-subtitle translate>{{
+												trans?.initialTransportationDate | date
+											}}</mat-card-subtitle>
+										</mat-card-header>
+										<mat-card-title>{{ trans?.fromAddress?.placeName }}</mat-card-title>
+										<mat-card-content>
+											<p>
+												{{ trans?.fromEstate?.estateType?.name }}
+											</p>
+										</mat-card-content>
+									</mat-card>
+								</div>
+							</div>
+							<div fxFlex="100" fxFlex.gt-sm="100">
+								<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+									<mat-card fxFlex="100" class="mat-card-cls" fxLayout="column" fxLayout.xs="column">
+										<mat-card-header>
+											<mat-card-subtitle translate>{{
+												trans?.finalTransportationDate | date
+											}}</mat-card-subtitle>
+										</mat-card-header>
+										<mat-card-title>{{ trans?.toAddress?.placeName }}</mat-card-title>
+										<mat-card-content>
+											<p>
+												{{ trans?.toEstate?.estateType?.name }}
+											</p>
+										</mat-card-content>
+									</mat-card>
+								</div>
+							</div>
+							<div fxFlex="100" fxFlex.gt-sm="100">
+								<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+									<mat-card fxFlex="100" class="mat-card-cls" fxLayout="column" fxLayout.xs="column">
+										<mat-card-header>
+											<mat-card-subtitle translate>Incoming Offers:</mat-card-subtitle>
+										</mat-card-header>
+										<mat-card-title>{{ trans?.demand?.demandNumberOfOffers }}</mat-card-title>
+									</mat-card>
+								</div>
+							</div>
+							<div fxFlex="100" fxFlex.gt-sm="100">
+								<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+									<mat-card fxFlex="100" class="mat-card-cls" fxLayout="column" fxLayout.xs="column">
+										<mat-card-header>
+											<mat-card-subtitle translate>Estimated Value:</mat-card-subtitle>
+										</mat-card-header>
+										<mat-card-title>{{ trans?.transportationEstimatedValue }} €</mat-card-title>
+									</mat-card>
+								</div>
+							</div>
+						</div>
+						<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="center">
+							<div fxFlex="100" fxFlex.gt-sm="100">
+								<mat-card fxFlex="100" fxLayout="column" fxLayout.xs="column" fxLayoutGap="5px">
+									<mat-tab-group dynamicHeight center mat-align-tabs="center">
+										<mat-tab>
+											<ng-template mat-tab-label>
+												<mat-icon style="margin-right: 8px" class="example-tab-icon"
+													>home</mat-icon
+												>
+												Address Fields
+											</ng-template>
+											<div
+												fxflex="50"
+												fxLayout="row"
+												fxLayout.xs="column"
+												style="margin-top: 20px"
+												fxLayoutGap="10px"
+												fxLayoutAlign="center"
+											>
+												<mat-form-field appearance="outline">
+													<mat-label translate>Straße</mat-label>
+													<input
+														[ngModel]="trans?.fromAddress?.street"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>House number</mat-label>
+													<input
+														[ngModel]="trans?.fromAddress?.houseNumber"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>PLZ</mat-label>
+													<input
+														[ngModel]="trans?.fromAddress?.postCode"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>ORT</mat-label>
+													<input
+														[ngModel]="trans?.fromAddress?.placeName"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>COUNTRY</mat-label>
+													<input
+														[ngModel]="trans?.fromAddress?.country?.name"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+											</div>
+											<div
+												fxflex="50"
+												fxLayout="row"
+												fxLayout.xs="column"
+												fxLayoutGap="10px"
+												fxLayoutAlign="center"
+											>
+												<mat-form-field appearance="outline">
+													<mat-label translate>Straße</mat-label>
+													<input
+														[ngModel]="trans?.toAddress?.street"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>House number</mat-label>
+													<input
+														[ngModel]="trans?.toAddress?.houseNumber"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>PLZ</mat-label>
+													<input
+														[ngModel]="trans?.toAddress?.postCode"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>ORT</mat-label>
+													<input
+														[ngModel]="trans?.toAddress?.placeName"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>COUNTRY</mat-label>
+													<input
+														[ngModel]="trans?.toAddress?.country?.name"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+											</div>
+										</mat-tab>
+
+										<mat-tab>
+											<ng-template mat-tab-label>
+												<mat-icon style="margin-right: 8px" class="example-tab-icon"
+													>home_work</mat-icon
+												>
+												Address Details Fields
+											</ng-template>
+
+											<div
+												fxFlex
+												fxLayout="column"
+												fxLayout.xs="column"
+												style="margin-top: 20px"
+												fxLayoutGap="1px"
+												fxLayoutAlign="center"
+											>
+												<mat-form-field style="width: 100%" appearance="outline">
+													<mat-label>{{
+														this.estateService.getEstateTypeNameById(
+															trans?.fromEstate.estateTypeId
+														)
+													}}</mat-label>
+													<mat-select disabled="true"></mat-select>
+												</mat-form-field>
+											</div>
+
+											<div
+												fxFlex
+												fxLayout="column"
+												fxLayout.xs="column"
+												fxLayoutGap="5px"
+												fxLayoutAlign="center"
+											>
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Floors: {{ trans?.fromEstate?.numberOfFloors }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>Peoples: {{ trans?.numberOfPeople }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>{{ trans?.fromEstate?.numberOfFloors }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>{{ trans?.fromEstate?.numberOfFloors }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Rooms: {{ trans?.fromEstate?.numberOfRooms }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Total Square Meter:
+															{{ trans?.fromEstate?.totalSquareMeter }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+											</div>
+
+											<div fxFlex fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Waiting Permission:
+															{{ trans?.fromEstate?.waitingPermission }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Kitchen Montage:
+															{{ trans?.fromEstate.kitchenMontage }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Furniture Montage:
+															{{ trans?.fromEstate.furnitureMontage }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+											</div>
+
+											<mat-divider style="margin: 20px 0px"></mat-divider>
+
+											<div
+												fxFlex
+												fxLayout="column"
+												fxLayout.xs="column"
+												style="margin-top: 40px"
+												fxLayoutGap="4px"
+												fxLayoutAlign="center"
+											>
+												<mat-form-field style="width: 100%" appearance="outline">
+													<mat-label>{{
+														this.estateService.getEstateTypeNameById(
+															trans?.toEstate.estateTypeId
+														)
+													}}</mat-label>
+													<mat-select disabled="true"></mat-select>
+												</mat-form-field>
+											</div>
+
+											<div
+												fxFlex
+												fxLayout="column"
+												fxLayout.xs="column"
+												fxLayoutGap="5px"
+												fxLayoutAlign="center"
+											>
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Floors: {{ trans?.toEstate?.numberOfFloors }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>Peoples: {{ trans?.numberOfPeople }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>{{ trans?.toEstate?.numberOfFloors }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>{{ trans?.toEstate?.numberOfFloors }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Rooms: {{ trans?.toEstate?.numberOfRooms }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Total Square Meter:
+															{{ trans?.toEstate?.totalSquareMeter }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+											</div>
+
+											<div
+												fxFlex
+												fxLayout="row"
+												fxLayout.xs="column"
+												fxLayoutGap="5px"
+												fxLayoutAlign="center"
+											>
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Waiting Permission:
+															{{ trans?.toEstate?.waitingPermission }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Kitchen Montage:
+															{{ trans?.toEstate.kitchenMontage }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Furniture Montage:
+															{{ trans?.toEstate.furnitureMontage }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+											</div>
+										</mat-tab>
+
+										<mat-tab>
+											<ng-template mat-tab-label>
+												<mat-icon style="margin-right: 8px" class="example-tab-icon"
+													>person</mat-icon
+												>
+												Personal Informations Fields
+											</ng-template>
+											<div
+												fxFlex
+												fxLayout="column"
+												fxLayout.xs="column"
+												style="margin-top: 20px"
+												fxLayoutGap="1px"
+												fxLayoutAlign="center"
+											>
+												<mat-form-field appearance="outline">
+													<mat-label translate>Firstname</mat-label>
+													<input [ngModel]="user?.firstName" matInput disabled="true" />
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>Lastname</mat-label>
+													<input [ngModel]="user?.lastName" matInput disabled="true" />
+												</mat-form-field>
+												<mat-form-field appearance="outline">
+													<mat-label translate>Email</mat-label>
+													<input [ngModel]="user?.email" matInput disabled="true" />
+												</mat-form-field>
+												<mat-form-field appearance="outline">
+													<mat-label translate>Phone Number</mat-label>
+													<input [ngModel]="user?.phoneNumber" matInput disabled="true" />
+												</mat-form-field>
+											</div>
+										</mat-tab>
+
+										<mat-tab>
+											<ng-template mat-tab-label>
+												<mat-icon style="margin-right: 8px" class="example-tab-icon"
+													>weekend</mat-icon
+												>
+												Furniture Details Fields
+											</ng-template>
+										</mat-tab>
+
+										<mat-tab>
+											<ng-template mat-tab-label>
+												<mat-icon
+													style="margin-right: 15px"
+													[matBadge]="trans?.demand?.demandNumberOfOffers"
+													class="example-tab-icon"
+													>attach_money</mat-icon
+												>
+												Incoming Offers
+											</ng-template>
+											<div>
+												<h3 *ngIf="trans?.demand?.demandNumberOfOffers == 0">No offers yet.</h3>
+
+												<mat-grid-list cols="3" rowHeight="200px">
+													<mat-grid-tile
+														*ngFor="let item of trans?.demand?.companyDemandServices"
+													>
+														<mat-card style="margin-top: 20px">
+															<mat-card-header>
+																<mat-card-title
+																	>Offered Amount: {{ item.offerAmount }}
+																</mat-card-title>
+																<mat-card-subtitle
+																	>Company name: {{ item.company?.name }}
+																</mat-card-subtitle>
+															</mat-card-header>
+															<mat-card-content>
+																<div *ngIf="item?.id == trans?.demand?.acceptedOfferId">
+																	<p>
+																		{{ trans?.demand?.demandStatusType?.name }}
+																	</p>
+																</div>
+															</mat-card-content>
+															<mat-card-actions>
+																<div *ngIf="item?.id != trans?.demand?.acceptedOfferId">
+																	<button
+																		style="margin-right: 8px"
+																		(click)="acceptOffer(item)"
+																		mat-raised-button
+																		color="primary"
+																	>
+																		<mat-icon>check_circle</mat-icon>
+																		<span>Accept</span>
+																	</button>
+																	<button mat-stroked-button (click)="acceptOffer()">
+																		<mat-icon color="primary">close</mat-icon>
+																		<span>Reject</span>
+																	</button>
+																</div>
+															</mat-card-actions>
+														</mat-card>
+													</mat-grid-tile>
+												</mat-grid-list>
+											</div>
+										</mat-tab>
+
+										<mat-tab disabled>
+											<ng-template mat-tab-label>
+												<mat-chip-list style="text-align: center">
+													<mat-chip style="width: 150px; color: #ffff" selected>{{
+														trans?.demand?.demandStatusType?.name
+													}}</mat-chip>
+												</mat-chip-list>
+											</ng-template>
+										</mat-tab>
+									</mat-tab-group>
+								</mat-card>
+							</div>
+						</div>
+					</div>
+				</mat-expansion-panel>
+			</mat-accordion>
+			<br />
+		</div>
+	</div>
+	<div *ngIf="pageIndex === 1" fxFlex fxLayout="column" fxLayout.lg="column" fxLayout.xs="column">
+		<div
+			*ngFor="let trans of oldTransportations; index as i"
+			fxFlex
+			fxLayout="column"
+			fxLayout.lg="column"
+			fxLayout.xs="column"
+		>
+			<mat-accordion>
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+						<div class="accordion-header">
+							<div class="accordion-header-title">
+								<span class="accordion-title-item"
+									><strong>{{ i + 1 + ')' }}</strong></span
+								>&nbsp;
+								<span class="accordion-title-item"
+									><strong>From: </strong>{{ trans?.fromAddress?.placeName }}</span
+								>&nbsp;
+								<span class="accordion-title-item"
+									><strong>To:</strong> {{ trans?.toAddress?.placeName }}</span
+								>
+							</div>
+						</div>
+					</mat-expansion-panel-header>
+					<div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+						<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+							<div fxFlex="100" fxFlex.gt-sm="100">
+								<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+									<mat-card fxFlex="100" class="mat-card-cls" fxLayout="column" fxLayout.xs="column">
+										<mat-card-header>
+											<mat-card-subtitle translate>{{
+												trans?.initialTransportationDate | date
+											}}</mat-card-subtitle>
+										</mat-card-header>
+										<mat-card-title>{{ trans?.fromAddress?.placeName }}</mat-card-title>
+										<mat-card-content>
+											<p>
+												{{ trans?.fromEstate?.estateType?.name }}
+											</p>
+										</mat-card-content>
+									</mat-card>
+								</div>
+							</div>
+							<div fxFlex="100" fxFlex.gt-sm="100">
+								<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+									<mat-card fxFlex="100" class="mat-card-cls" fxLayout="column" fxLayout.xs="column">
+										<mat-card-header>
+											<mat-card-subtitle translate>{{
+												trans?.finalTransportationDate | date
+											}}</mat-card-subtitle>
+										</mat-card-header>
+										<mat-card-title>{{ trans?.toAddress?.placeName }}</mat-card-title>
+										<mat-card-content>
+											<p>
+												{{ trans?.toEstate?.estateType?.name }}
+											</p>
+										</mat-card-content>
+									</mat-card>
+								</div>
+							</div>
+							<div fxFlex="100" fxFlex.gt-sm="100">
+								<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+									<mat-card fxFlex="100" class="mat-card-cls" fxLayout="column" fxLayout.xs="column">
+										<mat-card-header>
+											<mat-card-subtitle translate>Incoming Offers:</mat-card-subtitle>
+										</mat-card-header>
+										<mat-card-title>{{ trans?.demand?.demandNumberOfOffers }}</mat-card-title>
+									</mat-card>
+								</div>
+							</div>
+							<div fxFlex="100" fxFlex.gt-sm="100">
+								<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+									<mat-card fxFlex="100" class="mat-card-cls" fxLayout="column" fxLayout.xs="column">
+										<mat-card-header>
+											<mat-card-subtitle translate>Estimated Value:</mat-card-subtitle>
+										</mat-card-header>
+										<mat-card-title>{{ trans?.transportationEstimatedValue }} €</mat-card-title>
+									</mat-card>
+								</div>
+							</div>
+						</div>
+						<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="center">
+							<div fxFlex="100" fxFlex.gt-sm="100">
+								<mat-card fxFlex="100" fxLayout="column" fxLayout.xs="column" fxLayoutGap="5px">
+									<mat-tab-group dynamicHeight center mat-align-tabs="center">
+										<mat-tab>
+											<ng-template mat-tab-label>
+												<mat-icon style="margin-right: 8px" class="example-tab-icon"
+													>home</mat-icon
+												>
+												Address Fields
+											</ng-template>
+											<div
+												fxflex="50"
+												fxLayout="row"
+												fxLayout.xs="column"
+												style="margin-top: 20px"
+												fxLayoutGap="10px"
+												fxLayoutAlign="center"
+											>
+												<mat-form-field appearance="outline">
+													<mat-label translate>Straße</mat-label>
+													<input
+														[ngModel]="trans?.fromAddress?.street"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>House number</mat-label>
+													<input
+														[ngModel]="trans?.fromAddress?.houseNumber"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>PLZ</mat-label>
+													<input
+														[ngModel]="trans?.fromAddress?.postCode"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>ORT</mat-label>
+													<input
+														[ngModel]="trans?.fromAddress?.placeName"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>COUNTRY</mat-label>
+													<input
+														[ngModel]="trans?.fromAddress?.country?.name"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+											</div>
+											<div
+												fxflex="50"
+												fxLayout="row"
+												fxLayout.xs="column"
+												fxLayoutGap="10px"
+												fxLayoutAlign="center"
+											>
+												<mat-form-field appearance="outline">
+													<mat-label translate>Straße</mat-label>
+													<input
+														[ngModel]="trans?.toAddress?.street"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>House number</mat-label>
+													<input
+														[ngModel]="trans?.toAddress?.houseNumber"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>PLZ</mat-label>
+													<input
+														[ngModel]="trans?.toAddress?.postCode"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>ORT</mat-label>
+													<input
+														[ngModel]="trans?.toAddress?.placeName"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>COUNTRY</mat-label>
+													<input
+														[ngModel]="trans?.toAddress?.country?.name"
+														matInput
+														disabled="true"
+													/>
+												</mat-form-field>
+											</div>
+										</mat-tab>
+
+										<mat-tab>
+											<ng-template mat-tab-label>
+												<mat-icon style="margin-right: 8px" class="example-tab-icon"
+													>home_work</mat-icon
+												>
+												Address Details Fields
+											</ng-template>
+
+											<div
+												fxFlex
+												fxLayout="column"
+												fxLayout.xs="column"
+												style="margin-top: 20px"
+												fxLayoutGap="1px"
+												fxLayoutAlign="center"
+											>
+												<mat-form-field style="width: 100%" appearance="outline">
+													<mat-label>{{
+														this.estateService.getEstateTypeNameById(
+															trans?.fromEstate.estateTypeId
+														)
+													}}</mat-label>
+													<mat-select disabled="true"></mat-select>
+												</mat-form-field>
+											</div>
+
+											<div
+												fxFlex
+												fxLayout="column"
+												fxLayout.xs="column"
+												fxLayoutGap="5px"
+												fxLayoutAlign="center"
+											>
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Floors: {{ trans?.fromEstate?.numberOfFloors }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>Peoples: {{ trans?.numberOfPeople }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>{{ trans?.fromEstate?.numberOfFloors }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>{{ trans?.fromEstate?.numberOfFloors }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Rooms: {{ trans?.fromEstate?.numberOfRooms }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Total Square Meter:
+															{{ trans?.fromEstate?.totalSquareMeter }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+											</div>
+
+											<div fxFlex fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Waiting Permission:
+															{{ trans?.fromEstate?.waitingPermission }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Kitchen Montage:
+															{{ trans?.fromEstate.kitchenMontage }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Furniture Montage:
+															{{ trans?.fromEstate.furnitureMontage }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+											</div>
+
+											<mat-divider style="margin: 20px 0px"></mat-divider>
+
+											<div
+												fxFlex
+												fxLayout="column"
+												fxLayout.xs="column"
+												style="margin-top: 40px"
+												fxLayoutGap="4px"
+												fxLayoutAlign="center"
+											>
+												<mat-form-field style="width: 100%" appearance="outline">
+													<mat-label>{{
+														this.estateService.getEstateTypeNameById(
+															trans?.toEstate.estateTypeId
+														)
+													}}</mat-label>
+													<mat-select disabled="true"></mat-select>
+												</mat-form-field>
+											</div>
+
+											<div
+												fxFlex
+												fxLayout="column"
+												fxLayout.xs="column"
+												fxLayoutGap="5px"
+												fxLayoutAlign="center"
+											>
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Floors: {{ trans?.toEstate?.numberOfFloors }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>Peoples: {{ trans?.numberOfPeople }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>{{ trans?.toEstate?.numberOfFloors }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label>{{ trans?.toEstate?.numberOfFloors }}</mat-label>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Rooms: {{ trans?.toEstate?.numberOfRooms }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Total Square Meter:
+															{{ trans?.toEstate?.totalSquareMeter }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+											</div>
+
+											<div
+												fxFlex
+												fxLayout="row"
+												fxLayout.xs="column"
+												fxLayoutGap="5px"
+												fxLayoutAlign="center"
+											>
+												<div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px">
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Waiting Permission:
+															{{ trans?.toEstate?.waitingPermission }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Kitchen Montage:
+															{{ trans?.toEstate.kitchenMontage }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+													<mat-form-field style="width: 100%" appearance="outline">
+														<mat-label
+															>Furniture Montage:
+															{{ trans?.toEstate.furnitureMontage }}</mat-label
+														>
+														<mat-select disabled="true"></mat-select>
+													</mat-form-field>
+												</div>
+											</div>
+										</mat-tab>
+
+										<mat-tab>
+											<ng-template mat-tab-label>
+												<mat-icon style="margin-right: 8px" class="example-tab-icon"
+													>person</mat-icon
+												>
+												Personal Informations Fields
+											</ng-template>
+											<div
+												fxFlex
+												fxLayout="column"
+												fxLayout.xs="column"
+												style="margin-top: 20px"
+												fxLayoutGap="1px"
+												fxLayoutAlign="center"
+											>
+												<mat-form-field appearance="outline">
+													<mat-label translate>Firstname</mat-label>
+													<input [ngModel]="user?.firstName" matInput disabled="true" />
+												</mat-form-field>
+
+												<mat-form-field appearance="outline">
+													<mat-label translate>Lastname</mat-label>
+													<input [ngModel]="user?.lastName" matInput disabled="true" />
+												</mat-form-field>
+												<mat-form-field appearance="outline">
+													<mat-label translate>Email</mat-label>
+													<input [ngModel]="user?.email" matInput disabled="true" />
+												</mat-form-field>
+												<mat-form-field appearance="outline">
+													<mat-label translate>Phone Number</mat-label>
+													<input [ngModel]="user?.phoneNumber" matInput disabled="true" />
+												</mat-form-field>
+											</div>
+										</mat-tab>
+
+										<mat-tab>
+											<ng-template mat-tab-label>
+												<mat-icon style="margin-right: 8px" class="example-tab-icon"
+													>weekend</mat-icon
+												>
+												Furniture Details Fields
+											</ng-template>
+										</mat-tab>
+
+										<mat-tab>
+											<ng-template mat-tab-label>
+												<mat-icon
+													style="margin-right: 15px"
+													[matBadge]="trans?.demand?.demandNumberOfOffers"
+													class="example-tab-icon"
+													>attach_money</mat-icon
+												>
+												Incoming Offers
+											</ng-template>
+											<div>
+												<h3 *ngIf="trans?.demand?.demandNumberOfOffers == 0">No offers yet.</h3>
+
+												<mat-grid-list cols="3" rowHeight="200px">
+													<mat-grid-tile
+														*ngFor="let item of trans?.demand?.companyDemandServices"
+													>
+														<mat-card style="margin-top: 20px">
+															<mat-card-header>
+																<mat-card-title
+																	>Offered Amount: {{ item.offerAmount }}
+																</mat-card-title>
+																<mat-card-subtitle
+																	>Company name: {{ item.company?.name }}
+																</mat-card-subtitle>
+															</mat-card-header>
+															<mat-card-content>
+																<div *ngIf="item?.id == trans?.demand?.acceptedOfferId">
+																	<p>
+																		{{ trans?.demand?.demandStatusType?.name }}
+																	</p>
+																</div>
+															</mat-card-content>
+															<mat-card-actions>
+																<div *ngIf="item?.id != trans?.demand?.acceptedOfferId">
+																	<button
+																		style="margin-right: 8px"
+																		(click)="acceptOffer(item)"
+																		mat-raised-button
+																		color="primary"
+																	>
+																		<mat-icon>check_circle</mat-icon>
+																		<span>Accept</span>
+																	</button>
+																	<button mat-stroked-button (click)="acceptOffer()">
+																		<mat-icon color="primary">close</mat-icon>
+																		<span>Reject</span>
+																	</button>
+																</div>
+															</mat-card-actions>
+														</mat-card>
+													</mat-grid-tile>
+												</mat-grid-list>
+											</div>
+										</mat-tab>
+
+										<mat-tab disabled>
+											<ng-template mat-tab-label>
+												<mat-chip-list style="text-align: center">
+													<mat-chip style="width: 150px; color: #ffff" selected>{{
+														trans?.demand?.demandStatusType?.name
+													}}</mat-chip>
+												</mat-chip-list>
+											</ng-template>
+										</mat-tab>
+									</mat-tab-group>
+								</mat-card>
+							</div>
+						</div>
+					</div>
+				</mat-expansion-panel>
+			</mat-accordion>
+			<br />
+		</div>
+	</div>
+
+	<ngx-spinner
+		bdOpacity="0.9"
+		bdColor="rgba(255,255,255,0)"
+		size="medium"
+		color="#e82c2c"
+		type="ball-square-clockwise-spin"
+		[fullScreen]="false"
+	>
+		<p style="color: white">Loading...</p>
+	</ngx-spinner>
+</div>

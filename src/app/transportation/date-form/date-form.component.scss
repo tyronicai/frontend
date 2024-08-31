@@ -1,0 +1,152 @@
+.example-button-container {
+	position: fixed;
+	right: 100px;
+	bottom: 100px;
+
+	justify-content: center;
+	width: 50px;
+}
+
+.container {
+	text-align: center;
+	padding: 1em;
+	margin-bottom: 1%;
+	margin: 4px 15%;
+}
+
+.containerlast {
+	text-align: center;
+	padding: 1em;
+	margin-bottom: 100px;
+	margin: 4px 15%;
+}
+
+.meinumzug-button {
+	text-align: center center;
+	font-weight: bold;
+	border-radius: 10px;
+	border-style: double;
+	font-size: 1em;
+	padding: 0.4em;
+}
+
+@media only screen and (max-width: 667px) {
+	.container {
+		padding: 0em;
+		margin-top: 10px;
+		margin: 4px 0;
+	}
+
+	.meinumzug-button {
+		text-align: center center;
+		font-weight: normal;
+		border-radius: 10px;
+		border-style: double;
+		font-size: 1.2em;
+		padding: 0.4em;
+	}
+}
+
+@media only screen and (max-width: 1020px) {
+	.container {
+		padding: 0em;
+		margin-top: 10px;
+		margin: 4px 0;
+	}
+	.meinumzug-button {
+		text-align: center center;
+		font-weight: bold;
+		border-radius: 10px;
+		border-style: double;
+		font-size: 1.2em;
+		padding: 0.4em;
+		min-width: 300px;
+	}
+}
+
+@media only screen and (max-width: 560px) {
+	.container {
+		padding: 0em;
+		margin-top: 10px;
+		margin: 4px 0;
+	}
+	.meinumzug-button {
+		text-align: center center;
+		font-weight: bold;
+		border-radius: 10px;
+		border-style: double;
+		font-size: 1em;
+		padding: 0.4em;
+		min-width: 300px;
+	}
+}
+
+.mat-card {
+	min-height: 100%;
+	min-width: 100%;
+}
+
+.mat-form-field {
+	width: 50%;
+	margin: 0 1%;
+}
+
+[hidden] {
+	display: none !important;
+}
+
+[hidden1] {
+	display: none !important;
+}
+
+.cb-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
+	flex-flow: row;
+}
+
+.mat-checkbox {
+	margin-left: 20px;
+}
+
+.cb-vertival {
+	flex-flow: column;
+}
+
+.vertical-center {
+	margin: 0;
+	position: absolute;
+	top: 30%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.some-content {
+	font-size: 1.2rem;
+	font-family: Poppins;
+}
+
+@font-face {
+	font-family: "Poppins"; /*a name to be used later*/
+	src: url("https://fonts.googleapis.com/css?family=Poppins&display=swap"); /*URL to font*/
+}
+
+.numberCircle {
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	padding: 8px;
+
+	background: rgb(210, 250, 212);
+	border: 2px solid #666;
+	color: #666;
+	text-align: center;
+	vertical-align: middle;
+
+	font: 24px Arial, sans-serif;
+}
+.allBtn {
+	background-color: #4d81bf;
+	color: white;
+}

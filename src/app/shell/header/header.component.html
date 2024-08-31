@@ -1,0 +1,63 @@
+<mat-toolbar class="mat-elevation-z6 navbar" style="background-color: #4d81bf; color: white" é>
+	<div fxHide.gt-sm fxLayoutAlign="start center">
+		<button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
+			<mat-icon>menu</mat-icon>
+		</button>
+		<span class="title">{{ title }}</span>
+	</div>
+	<div fxHide.lt-md>
+		<button mat-button routerLink="/home" routerLinkActive="active">
+			<span style="font-size: 1.4rem" translate>APP_NAME</span>
+		</button>
+		<button mat-button routerLink="/home" routerLinkActive="active">
+			<mat-icon>home</mat-icon>
+			<span translate>Home</span>
+		</button>
+	</div>
+	<span fxFlex></span>
+	<!--
+  <span> {{ this.estateService.getLanguageNameByLanguage(this.i18nService.language) }} </span>
+  -->
+	<div fxHide.lt-md *ngIf="account">
+		<button mat-button routerLink="/profile">
+			<mat-icon>person</mat-icon>
+			<span translate>Profile</span>
+		</button>
+		<button mat-button routerLink="/profile/demands">
+			<mat-icon>assignment</mat-icon>
+			<span translate>My Demands</span>
+		</button>
+	</div>
+
+	<button mat-icon-button [matMenuTriggerFor]="languageMenu">
+		<mat-icon>
+			<span
+				class="flag-icon flag-icon-{{
+					this.i18nService.language.split('-')[1].toLowerCase()
+				}} flag-icon-squared"
+			></span>
+		</mat-icon>
+	</button>
+	<mat-menu #languageMenu="matMenu">
+		<button mat-menu-item *ngFor="let language of languages" (click)="setLanguage(language)">
+			<span class="flag-icon flag-icon-{{ language.split('-')[1].toLowerCase() }} flag-icon-squared"></span>
+			{{ this.estateService.getLanguageNameByLanguage(language) }}
+		</button>
+	</mat-menu>
+	<button mat-icon-button [matMenuTriggerFor]="userMenu">
+		<mat-icon *ngIf="!account">person</mat-icon>
+		<mat-icon *ngIf="account">settings</mat-icon>
+	</button>
+	<mat-menu #userMenu="matMenu">
+		<mat-list *ngIf="account">
+			<mat-list-item>
+				<span translate>Logged in as</span>&nbsp;<b>{{ account?.username }}</b>
+			</mat-list-item>
+			<mat-divider></mat-divider>
+		</mat-list>
+		<button *ngIf="!account" mat-menu-item (click)="loginPage()" translate>Login</button>
+		<button *ngIf="!account" mat-menu-item (click)="registerPage()" translate>Register</button>
+		<button *ngIf="account" mat-menu-item (click)="profilePage()" translate>Profil</button>
+		<button *ngIf="account" mat-menu-item (click)="logout()" translate>Logout</button>
+	</mat-menu>
+</mat-toolbar>

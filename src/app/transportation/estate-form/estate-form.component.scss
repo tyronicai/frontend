@@ -1,0 +1,36 @@
+/* .container {
+  text-align: center;
+  padding: 1em;
+}
+
+.mat-card {
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.mat-form-field {
+  width: 50%;
+  margin: 0 1%;
+}
+
+@media (max-width: 600px) {
+  .mat-radio-group {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.cb-wrapper {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+ */
+
+.container {
+	text-align: center;
+	padding: 1em;
+}
+
+[hidden] {
+	display: none !important;
+}

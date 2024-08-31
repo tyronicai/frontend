@@ -1,0 +1,14 @@
+<div fxLayout="column" fxLayout.lg="column" fxFlex fxLayoutAlign="center center">
+	<h1 mat-dialog-title>Hi {{ data.name }}</h1>
+	<div mat-dialog-content fxLayout="column" fxLayoutAlign="center">
+		<p>Aktivasyon mailini tekrar göndermek istiyor musun?</p>
+		<mat-form-field>
+			<mat-label>Email</mat-label>
+			<input matInput [(ngModel)]="data.email" />
+		</mat-form-field>
+	</div>
+	<button style="width: 100%; margin-bottom: 10px" mat-raised-button (click)="onNoClick()" color="warn">
+		Cancel
+	</button>
+	<button style="width: 100%" mat-raised-button [mat-dialog-close]="data.email">Ok</button>
+</div>

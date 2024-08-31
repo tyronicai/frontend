@@ -1,0 +1,36 @@
+<div fxFlex="20" fxFlex.xs="30">
+	<mat-form-field style="width: 100%" appearance="outline">
+		<mat-label>Code</mat-label>
+		<mat-select [(value)]="this.currentDemand.DemandOwner.CountryPhoneCode" name="country">
+			<mat-option>-- None --</mat-option>
+			<mat-option *ngFor="let country of this.countryService.getCountryList" [value]="country.countryCode">
+				<span class="flag-icon flag-icon-{{ country.isoCode2 }} flag-icon-squared"></span>
+				&nbsp; +{{ country.countryCode }}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field style="width: 100%" appearance="outline">
+		<mat-label translate>Code</mat-label>
+		<input
+			type="text"
+			aria-label="Number"
+			matInput
+			required
+			formControlName="myControl"
+			[matAutocomplete]="autoCountryCode"
+		/>
+		<mat-autocomplete #autoCountryCode="matAutocomplete" [displayWith]="displayFn">
+			<mat-option *ngFor="let code of this.countryPhoneCodes" [value]="code.countryCode">
+				<span class="flag-icon flag-icon-{{ code.isoCode2 }} flag-icon-squared"></span>
+				&nbsp; +{{ code.countryCode }}
+			</mat-option>
+		</mat-autocomplete>
+	</mat-form-field>
+</div>
+
+<div fxFlex="80">
+	<mat-form-field style="width: 100%" appearance="outline">
+		<input type="tel" matInput placeholder="Phone number" />
+	</mat-form-field>
+</div>

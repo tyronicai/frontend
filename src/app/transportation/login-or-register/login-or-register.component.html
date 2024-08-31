@@ -1,0 +1,27 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center" fxFlex="100">
+	<div fxLayout="row" fxLayoutAlign="center" fxFlex="60" fxLayoutGap="10px">
+		<h3 fromAddress style="color: #4d81bf">{{ 'Anmeldung' | translate }}</h3>
+	</div>
+	<div fxLayout="row" fxFlex="60" fxLayoutGap="10px">
+		<button
+			color="primary"
+			fxFlex="100%"
+			style="float: center"
+			mat-raised-button
+			class="allBtn"
+			(click)="goToLoginForm()"
+		>
+			{{ 'LOGIN' | translate }}
+		</button>
+		<button
+			color="accent"
+			fxFlex="100%"
+			style="float: center"
+			mat-raised-button
+			class="allBtn"
+			(click)="goToRegisterForm()"
+		>
+			{{ 'REGISTER' | translate }}
+		</button>
+	</div>
+</div>

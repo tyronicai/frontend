@@ -1,0 +1,24 @@
+<div
+	fxLayout.lg="row"
+	fxLayout.md="row"
+	fxLayout.sm="column"
+	fxLayout.xs="column"
+	fxLayoutGap="20px"
+	fxLayoutGap.xs="4px"
+>
+	<div fxFlex="100" fxLayout="row" fxLayoutGap="4px" fxLayoutGap.xs="4px">
+		<mat-form-field style="width: 100%; height: 50px">
+			<mat-select [(ngModel)]="this.currentEstate.elevatorAvailability" style="padding: 0px 10px">
+				<mat-option style="margin: 10px 5px; height: 50px" color="primary" [value]="0">
+					<span translate>No lift</span>
+				</mat-option>
+				<mat-option style="margin: 10px 5px; height: 50px" color="primary" [value]="1">
+					<span translate>Personal lift</span>
+				</mat-option>
+				<mat-option style="margin: 10px 5px; height: 50px" color="primary" [value]="2">
+					<span translate>Cargo lift</span>
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+</div>

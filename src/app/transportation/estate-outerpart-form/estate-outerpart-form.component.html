@@ -1,0 +1,286 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+	<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+				<mat-card style="height: 100%" fxLayout="column" fxFlex="100" fxFlex.xs="100" fxLayoutGap="10px">
+					<!-- <mat-card-header>
+						<mat-card-title>{{ 'Loading address of' | translate }}</mat-card-title>
+					</mat-card-header> -->
+					<h3 fromAddress style="color: #4d81bf">{{ 'Loading address of' | translate }}</h3>
+					<mat-card-content>
+						<div
+							fxLayout="column"
+							fxLayout.xs="column"
+							fxFlex="100"
+							fxFlex.xs="100"
+							fxLayoutGap="10px"
+							fxLayoutGap.xs="4px"
+						>
+							<div
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+									<mat-checkbox
+										fxLayoutAlign="left"
+										class="checkbox"
+										fxLayout="column"
+										[(ngModel)]="this.fromEstate.hasLoft"
+										color="primary"
+									>
+										<span translate>Loft</span>
+									</mat-checkbox>
+								</div>
+							</div>
+							<div
+								*ngIf="this.fromEstate.hasLoft"
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div fxFlex="100" fxFlex.xs="100">
+									<app-incremental-field
+										fxFlex="100"
+										[myHeader]="'Stockwerk' | translate"
+										[(counter)]="this.fromEstate.loftFloor"
+									>
+									</app-incremental-field>
+								</div>
+							</div>
+							<div
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+									<mat-checkbox
+										fxLayoutAlign="left"
+										class="checkbox"
+										fxLayout="column"
+										[(ngModel)]="this.fromEstate.hasGardenGarage"
+										color="primary"
+									>
+										<span translate>Garden/Garage</span>
+									</mat-checkbox>
+								</div>
+							</div>
+							<div
+								*ngIf="this.fromEstate.hasGardenGarage"
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div fxFlex="100" fxFlex.xs="100">
+									<app-incremental-field
+										fxFlex="100"
+										[myHeader]="'Stockwerk' | translate"
+										[(counter)]="this.fromEstate.gardenGarageFloor"
+									>
+									</app-incremental-field>
+								</div>
+							</div>
+							<div
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+									<mat-checkbox
+										fxLayoutAlign="left"
+										class="checkbox"
+										fxLayout="column"
+										[(ngModel)]="this.fromEstate.hasCellar"
+										color="primary"
+									>
+										<span translate>Cellar</span>
+									</mat-checkbox>
+								</div>
+							</div>
+							<div
+								*ngIf="this.fromEstate.hasCellar"
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div fxFlex="100" fxFlex.xs="100">
+									<app-incremental-field
+										fxFlex="100"
+										[myHeader]="'Stockwerk' | translate"
+										[(counter)]="this.fromEstate.cellarFloor"
+									>
+									</app-incremental-field>
+								</div>
+							</div>
+						</div>
+					</mat-card-content>
+				</mat-card>
+			</div>
+		</div>
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+				<mat-card style="height: 100%" fxLayout="column" fxFlex="100" fxFlex.xs="100" fxLayoutGap="10px">
+					<h3 fromAddress style="color: #4d81bf">{{ 'Entladeadresse nach' | translate }}</h3>
+					<mat-card-content>
+						<div
+							fxLayout="column"
+							fxLayout.xs="column"
+							fxFlex="100"
+							fxFlex.xs="100"
+							fxLayoutGap="10px"
+							fxLayoutGap.xs="4px"
+						>
+							<div
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+									<mat-checkbox
+										fxLayoutAlign="left"
+										class="checkbox"
+										fxLayout="column"
+										[(ngModel)]="this.toEstate.hasLoft"
+										color="primary"
+									>
+										<span translate>Loft</span>
+									</mat-checkbox>
+								</div>
+							</div>
+							<div
+								*ngIf="this.toEstate.hasLoft"
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div fxFlex="100" fxFlex.xs="100">
+									<app-incremental-field
+										fxFlex="100"
+										[myHeader]="'Stockwerk' | translate"
+										[(counter)]="this.toEstate.loftFloor"
+									>
+									</app-incremental-field>
+								</div>
+							</div>
+							<div
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+									<mat-checkbox
+										fxLayoutAlign="left"
+										class="checkbox"
+										fxLayout="column"
+										[(ngModel)]="this.toEstate.hasGardenGarage"
+										color="primary"
+									>
+										<span translate>Garden/Garage</span>
+									</mat-checkbox>
+								</div>
+							</div>
+							<div
+								*ngIf="this.toEstate.hasGardenGarage"
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div fxFlex="100" fxFlex.xs="100">
+									<app-incremental-field
+										fxFlex="100"
+										[myHeader]="'Stockwerk' | translate"
+										[(counter)]="this.toEstate.gardenGarageFloor"
+									>
+									</app-incremental-field>
+								</div>
+							</div>
+							<div
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div style="height: 50px" fxFlex="25" fxFlex.xs="50" fxLayoutAlign="start center">
+									<mat-checkbox
+										fxLayoutAlign="left"
+										class="checkbox"
+										fxLayout="column"
+										[(ngModel)]="this.toEstate.hasCellar"
+										color="primary"
+									>
+										<span translate>Cellar</span>
+									</mat-checkbox>
+								</div>
+							</div>
+							<div
+								*ngIf="this.toEstate.hasCellar"
+								fxLayout="row"
+								fxLayout.xs="column"
+								fxLayout.sm="column"
+								fxLayout.md="column"
+								fxLayoutGap="20px"
+								fxLayoutGap.xs="4px"
+							>
+								<div fxFlex="100" fxFlex.xs="100">
+									<app-incremental-field
+										fxFlex="100"
+										[myHeader]="'Stockwerk' | translate"
+										[(counter)]="this.toEstate.cellarFloor"
+									>
+									</app-incremental-field>
+								</div>
+							</div>
+						</div>
+					</mat-card-content>
+				</mat-card>
+			</div>
+		</div>
+	</div>
+	<div fxLayout.gt-sm="row" class="container" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="50">
+			<div fxLayout="column">
+				<button
+					style="width: 100%"
+					mat-raised-button
+					class="allBtn"
+					(click)="goToEstateReqServiceForm()"
+					translate
+				>
+					{{ 'Jetzt kostenlos anfragen' | translate }}
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

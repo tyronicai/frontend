@@ -1,0 +1,80 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+	<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+				<app-estate-form
+					fxFlex="100%"
+					fxLayoutGap="1%"
+					fxLayoutGap.xs="1%"
+					[header]="'Loading address of' | translate"
+					[fromEstateFlag]="true"
+					[currentEstate]="this.currentTransportation.FromEstate"
+					[currentTransportation]="this.currentTransportation"
+					style="height: 100%"
+				>
+				</app-estate-form>
+			</div>
+		</div>
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+				<app-estate-form
+					fxFlex="100%"
+					fxLayoutGap="1%"
+					fxLayoutGap.xs="1%"
+					[header]="'Entladeadresse nach' | translate"
+					[fromEstateFlag]="false"
+					[currentEstate]="this.currentTransportation.ToEstate"
+					[currentTransportation]="this.currentTransportation"
+					style="height: 100%"
+				>
+				</app-estate-form>
+			</div>
+		</div>
+	</div>
+	<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="50">
+			<div fxLayout="column">
+				<app-incremental-field
+					fxFlex="50"
+					fxFlex.md="100"
+					fxFlex.md="100"
+					fxFlex.sm="100"
+					fxFlex.xs="100"
+					[myHeader]="'Distance' | translate"
+					[min]="15"
+					[step]="15"
+					[range]="true"
+					[(counter)]="this.currentTransportation.TransportationDistanceMax"
+				></app-incremental-field>
+			</div>
+		</div>
+	</div>
+	<div fxLayout.gt-sm="row" class="container" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="start center">
+				<button
+					fxFlex="100%"
+					style="float: right"
+					mat-raised-button
+					class="allBtn"
+					(click)="this.calculateCost()"
+				>
+					{{ 'Cost Calculation' | translate }}
+				</button>
+			</div>
+		</div>
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="start center">
+				<button
+					fxFlex="100%"
+					style="float: right"
+					mat-raised-button
+					class="allBtn"
+					(click)="goToEstateOuterPartForm()"
+				>
+					{{ 'Jetzt kostenlos anfragen' | translate }}
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

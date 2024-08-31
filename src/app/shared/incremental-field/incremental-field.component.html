@@ -1,0 +1,20 @@
+<section>
+	<div class="example-button-row" style="border-bottom: 1px solid; padding: 0px 10px 0px 10px">
+		<span fxFlex="100" style="text-align: left; margin: auto">{{ myHeader }}</span>
+		<button fxFlex="30px" style="border-radius: 30px; color: #4d81bf" mat-icon-button (click)="changeValue(-1)">
+			<mat-icon>remove</mat-icon>
+		</button>
+		<div style="text-align: center">
+			<span style="line-height: 40px; font-size: 1.3rem" *ngIf="range" mat-center fxFlex="90px">
+				&nbsp;{{ counter - min + 1 }}-{{ counter }}&nbsp;
+			</span>
+			<span style="line-height: 40px; font-size: 1.3rem" *ngIf="!range" mat-center fxFlex="90px">
+				&nbsp;{{ counter }}&nbsp;
+			</span>
+		</div>
+
+		<button fxFlex="30px" style="border-radius: 30px; color: #4d81bf" mat-icon-button (click)="changeValue(1)">
+			<mat-icon>add</mat-icon>
+		</button>
+	</div>
+</section>

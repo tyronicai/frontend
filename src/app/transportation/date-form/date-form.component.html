@@ -1,0 +1,104 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+	<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+				<mat-card fxLayout="column" fxFlex="100" fxFlex.xs="100" fxLayoutGap="10px">
+					<h3 fromAddress style="color: #4d81bf">{{ 'WANN MÖCHTEN SIE UMZIEHEN?' | translate }}</h3>
+					<div
+						fxLayout="column"
+						fxLayout.xs="column"
+						fxFlex="100"
+						fxFlex.xs="100"
+						fxLayoutGap="10px"
+						fxLayoutGap.xs="4px"
+					>
+						<mat-form-field style="width: 100%">
+							<mat-label translate>Umzugstermin</mat-label>
+							<mat-select [(value)]="selected" style="padding: 0px 10px">
+								<mat-option style="margin: 10px 5px; height: 50px" color="primary" [value]="1">
+									<span translate>Flexible Period</span>
+								</mat-option>
+								<mat-option style="margin: 10px 5px; height: 50px" color="primary" [value]="2">
+									<span translate>Fixed Schedule</span>
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+
+					<div
+						fxLayout="column"
+						fxLayout.xs="column"
+						fxFlex="100"
+						fxFlex.xs="100"
+						fxLayoutGap="10px"
+						fxLayoutGap.xs="4px"
+					>
+						<div
+							fxLayout="row"
+							fxLayout.xs="column"
+							fxLayout.sm="column"
+							fxLayout.md="column"
+							fxLayout.xs="column"
+							fxLayoutGap="10px"
+							fxLayoutGap.xs="10px"
+						>
+							<div fxFlex fxFlex.xs="100">
+								<mat-form-field style="width: 100%">
+									<mat-label translate>Initial Date</mat-label>
+									<input
+										matInput
+										(dateChange)="getOwnerInitialDate($event.value)"
+										[matDatepicker]="picker"
+										[(ngModel)]="this.currentTransportation.InitialTransportationDate"
+										placeholder="{{ 'Initial Date' | translate }}"
+										[formControl]="initialDateFormControl"
+									/>
+									<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+									<mat-datepicker #picker></mat-datepicker>
+									<mat-error *ngIf="initialDateFormControl.hasError('required')">
+										{{ 'Initial Date' | translate }} <strong>{{ 'required' | translate }}</strong>
+									</mat-error>
+								</mat-form-field>
+							</div>
+
+							<div *ngIf="selected == '1'" fxFlex fxFlex.xs="100">
+								<mat-form-field style="width: 100%">
+									<mat-label translate>Date</mat-label>
+									<input
+										matInput
+										(dateChange)="getOwnerInitialDate($event.value)"
+										[matDatepicker]="picker"
+										[(ngModel)]="this.currentTransportation.InitialTransportationDate"
+										placeholder="{{ 'Date' | translate }}"
+										[formControl]="initialDateFormControl"
+									/>
+									<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+									<mat-datepicker #picker></mat-datepicker>
+									<mat-error *ngIf="initialDateFormControl.hasError('required')">
+										{{ 'Date' | translate }} <strong>{{ 'required' | translate }}</strong>
+									</mat-error>
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+				</mat-card>
+			</div>
+		</div>
+	</div>
+	<div fxLayout.gt-sm="row" class="container" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="start center">
+				<button fxFlex="100%" style="float: right" mat-raised-button class="allBtn" (click)="openDialog()">
+					{{ 'Request quote from service providers' | translate }}
+				</button>
+			</div>
+		</div>
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="start center">
+				<button fxFlex="100%" style="float: right" mat-raised-button class="allBtn" (click)="thirdForm()">
+					{{ 'Continue to get exact priced offer' | translate }}
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,81 @@
+{
+	"APP_NAME": "MyMove",
+	"About": "Acerca de",
+	"Average price range:": "Rango de precio promedio:",
+	"COUNTRY": "PAÍS",
+	"Components Page": "Página de componentes",
+	"Details Page": "Página de detalles",
+	"Hello world !": "Hola Mundo !",
+	"Home": "Casa",
+	"House number": "House number",
+	"Loading address of": "Loading address of",
+	"Logged in as": "Conectado como",
+	"Login": "Iniciar sesión",
+	"Logout": "Cerrar sesión",
+	"NEXT": "SIGUIENTE",
+	"None": "Nada",
+	"PREVIOUS": "ANTERIOR",
+	"Password": "Contraseña",
+	"Password is required": "se requiere contraseña",
+	"Personen": "Personas",
+	"Remember me": "Recuérdame",
+	"Straße": "Street",
+	"Transportation": "Transporte",
+	"Username": "Nombre de usuario",
+	"Username is required": "Se requiere nombre de usuario",
+	"Username or password incorrect.": "Usuario o contraseña incorrectos",
+	"Version": "Versión",
+
+	"Home From Home": "Hogar a hogar",
+	"Intercity Transportation": "Transporte interurbano",
+	"Which service are you looking for?": "¿Qué servicio estás buscando?",
+	"Goods Transport": "Transporte de mercancias",
+	"International Transport": "Transporte internacional",
+	"SEARCH": "BUSCAR",
+	"TRANSPORT AND STORAGE SERVICES": "SERVICIOS DE TRANSPORTE Y ALMACENAMIENTO.",
+	"Packing service": "Packing service",
+	"Request quote from service providers": "Request quote from service providers",
+	"Continue to get exact priced offer": "Continue to get exact priced offer",
+	"How it works": "How it works",
+	"Registration": "Registration",
+	"Receive quote from service providers": "Receive quote from service providers",
+	"Set price with Artificial Intelligence": "Set price with Artificial Intelligence",
+
+	"demo": {
+		"title": "HowItWorks",
+		"register": "This is a simple demonstration app for ngx-translate"
+	},
+	"First": {
+		"HIW": {
+			"Title": "Nasıl Çalışır ?",
+			"It1": "Taşınma detaylarınızı girin",
+			"It2": "Rezervasyonunuzu yapınız",
+			"It3": "İş otaklarımızdan gelen teklifleri alın",
+			"It4": "Beğendiğiniz teklifi seçin"
+		},
+		"Alert":"Alert",
+		"SupportedAreas":"For the time being, we sussport post codes starting with 40, 41, 42, 43, 44, 45, 46, 58",
+		"MapButton": "Map of supported areas",
+		"Dialog" : {
+			"title": "title",
+			"message": "message",
+			"confirm":"confirm",
+			"dismiss": "dismiss"
+		}
+	},
+	"cookie": {
+        "header": "Cookies utilizadas en el sitio web",
+        "message": "Este sitio web utiliza cookies para garantizar que obtenga la mejor experiencia en nuestro sitio web.",
+        "dismiss": "¡Entendido!",
+        "allow": "Permitir cookies",
+        "deny": "Disminución",
+        "link": "Aprende más",
+		"policy": "Política de cookies",
+		"andour":"and our"
+    },
+	"login": {
+		"resetPwd": "Restablecimiento de contraseña",
+		"newPwd": 	"Introduzca su nueva contraseña",
+		"reNewPwd":   "Vuelve a ingresar tu nueva contraseña"
+	}
+}

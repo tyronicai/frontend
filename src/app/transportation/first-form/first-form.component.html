@@ -1,0 +1,70 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+	<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+				<app-address-form
+					fxFlex="100%"
+					header="Loading address of"
+					[address]="this.currentTransportation.FromAddress"
+				></app-address-form>
+			</div>
+		</div>
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="center center" style="height: 100%">
+				<button class="blockHead" mat-raised-button color="accent" (click)="EstateDetailForm()" translate>
+					{{ 'Jetzt kostenlos anfragen' | translate }}
+				</button>
+			</div>
+		</div>
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="row" fxLayoutAlign="start center" style="height: 100%">
+				<app-address-form
+					fxFlex="100%"
+					header="Entladeadresse nach"
+					[address]="this.currentTransportation.ToAddress"
+				></app-address-form>
+			</div>
+		</div>
+	</div>
+	<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="100">
+			<div fxLayout="column">
+				<div style="background-color: white; border-radius: 10px; padding: 1rem">
+					<mat-horizontal-stepper linear #stepper>
+						<mat-step [completed]="false">
+							<ng-template matStepLabel>{{ 'First.HIW.It1' | translate }}</ng-template>
+						</mat-step>
+						<mat-step [completed]="false">
+							<ng-template matStepLabel>{{ 'First.HIW.It2' | translate }}</ng-template>
+						</mat-step>
+						<mat-step [completed]="false">
+							<ng-template matStepLabel>{{ 'First.HIW.It3' | translate }}</ng-template>
+						</mat-step>
+						<mat-step [completed]="false">
+							<ng-template matStepLabel>{{ 'First.HIW.It4' | translate }}</ng-template>
+						</mat-step>
+					</mat-horizontal-stepper>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="50">
+			<div fxLayout="column">
+				<button
+					mat-raised-button
+					class="allBtn"
+					[matTooltip]="'First.SupportedAreas' | translate"
+					matTooltipPosition="above"
+					matBadge="!"
+					matBadgePosition="before"
+					matBadgeColor="accent"
+					(click)="MapTransportationForm()"
+				>
+					{{ 'First.MapButton' | translate }}
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<ngx-alerts></ngx-alerts>

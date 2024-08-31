@@ -1,0 +1,163 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+	<mat-card fxLayout="column">
+		<mat-form-field appearance="legacy">
+			<mat-label>{{ 'Stockwerk' | translate }}</mat-label>
+			<mat-select [(ngModel)]="this.selectedFloor" panelWidth="400px">
+				<mat-option *ngFor="let panel of this.fromEstate.Flats; let i = index" [value]="i">
+					{{ this.estateFlatHeader(i) }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-radio-group
+			defaultTabIndex="this.selectedEstatePartIdx"
+			[(ngModel)]="this.selectedEstatePartIdx"
+			(value)="(this.selectedEstatePartIdx)"
+			class="estatePartRG"
+		>
+			<ng-container
+				*ngFor="let estatePart of this.fromEstate.Flats[this.selectedFloor].EstateParts; let i = index"
+				[value]="i"
+			>
+				<mat-radio-button
+					value="{{ i }}"
+					style="
+						width: 200px;
+						padding: 5px;
+						border: 2px solid gray;
+						margin: 3px;
+						border-radius: 5px;
+						font-size: 14px;
+					"
+					checked="{{ i == this.selectedEstatePartIdx ? true : false }}"
+					(change)="estatePartRadioChange($event)"
+				>
+					<span>
+						<b>{{ this.estateService.getNameByLanguage(estatePart.estatePartType) }}</b>
+						<b> {{ estatePart.volumeOfFurnitures.toFixed(2) }} </b>
+						<b> m3 </b>
+					</span>
+				</mat-radio-button>
+			</ng-container>
+		</mat-radio-group>
+	</mat-card>
+
+	<mat-card>
+		<mat-grid-list [cols]="breakpoint2" rowHeight="4rem" (window:resize)="onResize($event)">
+			<mat-grid-tile
+				colspan="1"
+				rowspan="1"
+				*ngFor="let furnitureGroup of this.selectedEstatePart?.mainFurnitureGroupList; let i = index"
+			>
+				<button
+					style="width: 100%; height: 3rem; margin: 3px; background-color: #4d81bf"
+					mat-raised-button
+					color="primary"
+					(click)="frnGrpFrnList(this.selectedEstatePart, furnitureGroup)"
+				>
+					<b>{{ this.estateService.getNameByLanguage(furnitureGroup) }}</b>
+					<b
+						>(
+						{{ this.selectedEstatePart.getNumberOfFurnituresInFurnitureGroup(furnitureGroup.id) }}
+						)</b
+					>
+				</button>
+			</mat-grid-tile>
+		</mat-grid-list>
+	</mat-card>
+	<mat-card>
+		<mat-grid-list [cols]="breakpoint2" rowHeight="4rem" (window:resize)="onResize($event)">
+			<mat-grid-tile
+				colspan="1"
+				rowspan="1"
+				*ngFor="let furnitureGroup2 of this.selectedEstatePart?.secondaryFurnitureGroupList; let i = index"
+			>
+				<button
+					style="width: 100%; height: 3rem; margin: 3px"
+					mat-raised-button
+					color="secondary"
+					(click)="frnGrpFrnList(this.selectedEstatePart, furnitureGroup2)"
+				>
+					<b>{{ this.estateService.getNameByLanguage(furnitureGroup2) }}</b
+					><b>(</b>
+					<b>{{ this.selectedEstatePart.getNumberOfFurnituresInFurnitureGroup(furnitureGroup2.id) }} </b>
+					<b>)</b>
+				</button>
+			</mat-grid-tile>
+		</mat-grid-list>
+	</mat-card>
+	<mat-card fxLayout="column">
+		<mat-form-field>
+			<textarea
+				[(ngModel)]="this.currentTransportation.ExtraInfo"
+				matInput
+				matTextareaAutosize
+				matAutosizeMinRows="4"
+				matAutosizeMaxRows="4"
+				style="background-color: white; padding: 5px"
+				placeholder="{{ 'Write other details that come to mind...' | translate }}"
+			>
+			</textarea>
+		</mat-form-field>
+
+		<!-- <h3></h3>
+	<div class="example-button-container" fxFlex="10%">
+		<button mat-fab color="warn" aria-label="Cost Calculation" (click)="this.calculateCost()">
+			<mat-icon>home</mat-icon>
+		</button>
+	</div> -->
+	</mat-card>
+
+	<div fxLayout.gt-sm="row" class="container" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+		<div fxFlex="100" fxFlex.gt-sm="50">
+			<div fxLayout="column">
+				<button mat-raised-button class="allBtn" (click)="openDialog()">
+					{{ 'Submit Form' | translate }}
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<ng-template matExpansionPanelContent>
+		<mat-grid-list [cols]="breakpoint2" rowHeight="4rem" (window:resize)="onResize($event)">
+			<mat-grid-tile
+				colspan="1"
+				rowspan="1"
+				*ngFor="let furnitureGroup of this.estatePart.mainFurnitureGroupList; let i = index"
+			>
+				<button
+					style="width: 100%; height: 3rem"
+					mat-raised-button
+					color="primary"
+					(click)="frnGrpFrnList(estatePart, furnitureGroup)"
+				>
+					<b>{{ this.estateService.getNameByLanguage(furnitureGroup) }}</b>
+					<b
+						>(
+						{{ this.estatePart.getNumberOfFurnituresInFurnitureGroup(furnitureGroup.id) }}
+						)</b
+					>
+				</button>
+			</mat-grid-tile>
+		</mat-grid-list>
+		<mat-grid-list [cols]="breakpoint2" rowHeight="4rem" (window:resize)="onResize($event)">
+			<mat-grid-tile
+				colspan="1"
+				rowspan="1"
+				*ngFor="let furnitureGroup of this.estatePart.secondaryFurnitureGroupList; let i = index"
+			>
+				<button
+					style="width: 100%; height: 3rem"
+					mat-raised-button
+					color="secondary"
+					(click)="frnGrpFrnList(estatePart, furnitureGroup)"
+				>
+					<b>{{ this.estateService.getNameByLanguage(furnitureGroup) }}</b
+					><b>(</b>
+					<b>{{ this.estatePart.getNumberOfFurnituresInFurnitureGroup(furnitureGroup.id) }} </b>
+					<b>)</b>
+				</button>
+			</mat-grid-tile>
+		</mat-grid-list>
+	</ng-template>
+</div>

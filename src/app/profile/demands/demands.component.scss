@@ -1,0 +1,44 @@
+.container {
+	text-align: center;
+	margin: 5px 15%;
+	padding: 1em;
+}
+
+.filter-card {
+	text-align: center;
+	padding: 1em;
+	width: 300px;
+	display: inline;
+}
+
+.test {
+	background-color: #2096f3;
+	border-radius: 10px;
+	color: whitesmoke;
+}
+
+.mat-card-cls {
+	background-color: whitesmoke;
+	border-radius: 10px;
+	color: #2096f3;
+	height: 100%;
+}
+
+::ng-deep .mat-form-field-wrapper {
+	margin-bottom: 0em;
+	padding: 0em;
+}
+
+@media only screen and (max-width: 560px) {
+	mat-form-field {
+		width: 90%;
+	}
+	.container {
+		text-align: center;
+		margin: 5px 0;
+		padding: 0em;
+	}
+}
+.mat-list-icon {
+	color: rgba(0, 0, 0, 0.54);
+}

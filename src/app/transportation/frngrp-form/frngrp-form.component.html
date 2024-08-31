@@ -1,0 +1,83 @@
+<div mat-dialog-content>
+	<p>
+		<b>{{ this.estateService.getNameByLanguage(estatePart.estatePartType) }}</b>
+		<b> {{ estatePart.numberOfFurnitures }} </b>
+		<b>, </b>
+		<b> {{ estatePart.volumeOfFurnitures.toFixed(2) }} </b>
+		<b> m³ </b>
+	</p>
+
+	<b>{{ this.estateService.getNameByLanguage(furnitureGroup) }}</b>
+
+	<div *ngFor="let furniture of estatePart.furnitures" style="margin-top: 10px">
+		<div *ngIf="furnitureGroup.id == furniture.FurnitureType.furnitureGroupTypeId">
+			<mat-card
+				class="card-furniture"
+				fxLayoutGap.xs="10px"
+				style="margin-bottom: 10px"
+				fxLayoutAlign.xs="center center"
+			>
+				<mat-card-content style="height: 40px">
+					<div fxFlex="100" fxLayout="row" fxLayout.xs="column" style="align-items: center">
+						<div fxFlex="50">
+							{{ this.estateService.getNameByLanguage(furniture.FurnitureType) }}
+						</div>
+						<div fxFlex="30" fxLayout.xs="row">
+							<button
+								fxFlex="30px"
+								style="border-radius: 30px; color: #4d81bf"
+								mat-icon-button
+								(click)="ChangeNumberOfFurnitures(-1, furniture)"
+							>
+								<mat-icon>remove</mat-icon>
+							</button>
+							<div style="text-align: center">
+								<span
+									style="line-height: 40px; font-size: 1.3rem"
+									*ngIf="range"
+									mat-center
+									fxFlex="90px"
+								>
+									&nbsp;{{ furniture.NumberOfFurnitures - min + 1 }}-{{
+										furniture.NumberOfFurnitures
+									}}&nbsp;
+								</span>
+								<span
+									style="line-height: 40px; font-size: 1.3rem"
+									*ngIf="!range"
+									mat-center
+									fxFlex="90px"
+								>
+									&nbsp;{{ furniture.NumberOfFurnitures }}&nbsp;
+								</span>
+							</div>
+
+							<button
+								fxFlex="30px"
+								style="border-radius: 30px; color: #4d81bf"
+								mat-icon-button
+								(click)="ChangeNumberOfFurnitures(+1, furniture)"
+							>
+								<mat-icon>add</mat-icon>
+							</button>
+						</div>
+						<div fxFlex="20" *ngIf="furniture.FurnitureType.assemblable">
+							<mat-checkbox class="checkbox" [(ngModel)]="furniture.DoAssemble">
+								<span translate>Montage</span>
+							</mat-checkbox>
+						</div>
+					</div>
+				</mat-card-content>
+			</mat-card>
+		</div>
+	</div>
+</div>
+
+<div mat-dialog-actions>
+	<!--
+    <button mat-button [mat-dialog-close]="false">{{ 'No' | translate }}</button>
+  -->
+	<button class="allBtn" style="width: 100%" mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>
+		{{ 'Done' | translate }}
+	</button>
+</div>
